@@ -8,7 +8,14 @@ function bisextile(annee) {
 }
 
 function jMax(mois, annee) {
-    m = (1, 3, 5, 7, 8, 10, 12)
+    m = new Array()
+    m.push(1);
+    m.push(3);
+    m.push(5);
+    m.push(7);
+    m.push(8);
+    m.push(10);
+    m.push(12);
     if (mois == 2) {
         b = bisextile(annee)
         if (b == true) {
@@ -18,7 +25,7 @@ function jMax(mois, annee) {
             return 28
         }
     }
-    else if (mois in m) {
+    else if (m.includes(mois)) {
         return 31
     }
     else {
@@ -53,7 +60,7 @@ function zeller(m, a, b, j) {
     if (m == 11 || m == 12){
         res+=1
     }
-    alert("c = "+c+" a = "+a+" m = "+m+" k = "+k+" M = "+M+" q = "+q+" res = "+res)
+    //alert("c = "+c+" a = "+a+" m = "+m+" k = "+k+" M = "+M+" q = "+q+" res = "+res)
     return res
 }
 
@@ -103,7 +110,30 @@ function placeJours() {
     j = 1
     b = bisextile(annee)
     zell = zeller(mois, annee, b, j)
+    if (zell > 6){
+        zell -= 6
+    }
+    jmax = jMax(mois+1, annee)
+    pmois = mois - 1
+    pannee = annee
+    if (pmois < 0){
+        pmois += 12
+        pannee -= 1
+    }
+    pjmax = jMax(pmois+1, pannee)
     //alert(zell)
+    listcases = document.getElementsByClassName("date col-1")
+    for (i = 0; i < listcases.length; i++){
+        if (i < zell) {
+            listcases[i].innerHTML = pjmax - zell + i + 1
+        }
+        else if (i < zell + jmax){
+            listcases[i].innerHTML = i - zell + 1
+        }
+        else {
+            listcases[i].innerHTML = i - zell - jmax + 1
+        }
+    }
 }
 
 
