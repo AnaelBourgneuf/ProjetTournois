@@ -1,11 +1,13 @@
 <?php
+include "fonctions.php";
 if (isset($_SESSION["id"])) {
     session_start();
+
 }
 //$_SESSION["id"]="Anael";
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,49 +20,12 @@ if (isset($_SESSION["id"])) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="js/calendar.js" ></script>
-    <title>Hello, world!</title>
+    <title>SpearITournament - Accueil</title>
 
 
 
     <style>
-        /*pour le nav*/
-        @media (max-width: 123px) {
-            .navbar-header {
-                float: none;
-            }
-            .navbar-toggle {
-                display: block;
-            }
-            .navbar-collapse {
-                border-top: 1px solid transparent;
-                box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-            }
-            .navbar-collapse.collapse {
-                display: none!important;
-            }
-            .navbar-nav {
-                float: none!important;
-                margin: 7.5px -15px;
-            }
-            .navbar-nav>li {
-                float: none;
-            }
-            .navbar-nav>li>a {
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
-            .navbar-text {
-                float: none;
-                margin: 15px 0;
-            }
-            /* cette classe est à ajouter lorsque que vous utilisez une version de Bootstap supérieure ou égale à la 3.1.0 */
-            .navbar-collapse.collapse.in {
-                display: block!important;
-            }
-            .collapsing {
-                overflow: hidden!important;
-            }
-        }
+        setMenuStyle();
 
         /*pour le calendrier*/
         @media (max-width:575px) {
@@ -90,22 +55,78 @@ if (isset($_SESSION["id"])) {
             margin-left: 1vw;
         }
 
-        .card {
+        #rightbottom {
             width: 17vw;
             min-width: 200px;
             float: right;
             margin: 5px;
             padding: 5px;
-            margin-top: 48px;
+        }
+
+        #pub {
+            margin-top: 45px;
+        }
+
+        #boutons {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #boutons button {
+            margin-top: 3vh;
+        }
+
+        #suggest {
+            margin-top: 20px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #pub img {
+            width: 16vw;
+            height: auto;
+        }
+
+        @media all and (max-height: 950px) {
+            #suggest {
+                display: none;
+            }
         }
 
         @media all and (max-width: 1250px) {
             .container-fluid {
                 max-width: 96.5vw;
+                float: none;
             }
 
             .card {
-                margin-top: 10px;
+                margin-top: 0px;
+            }
+
+            #rightbottom {
+                margin-left: 0.5vw;
+                margin-top: 0px;
+                display: block;
+                width: 97.5vw;
+                float: none;
+                height: 50vh;
+            }
+
+            #pub {
+                margin-top: 5px;
+            }
+
+            #pub img {
+                width: auto;
+                height: 29vh;
+            }
+
+            #suggest {
+                display: block;
             }
         }
 
@@ -115,73 +136,9 @@ if (isset($_SESSION["id"])) {
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-fixed-top">
-        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="//codeply.com">Codeply</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Classements</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Nouveau
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Tournois</a>
-                        <a class="dropdown-item" href="#">Ameliorations</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Forum
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Comment ça marche ?</a>
-                        <a class="dropdown-item" href="#">Réclamations</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">À propos</a>
-                </li>
-            </ul>
-        </div>
-        <div class="mx-auto order-0">
-            <a class="navbar-brand mx-auto" href="#"><img src="pttlogo.png" style="width: 2vw;"> SpearITournament <img src="rpttlogo.png" style="width: 2vw;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ml-auto">
-                <form class="form-inline">
-                    <?php
-                        if (!isset($_SESSION["id"])) {
-                            echo "<button class=\"btn btn-sm btn-outline-info mr-sm-2\" type=\"button\">Inscription</button>";
-                        }
-                    ?>
-                    <button class="btn btn-outline-warning mr-sm-2" type="button"><img src="images/profile.png" style="width: 2vw">
-                        <?php
-                        if (isset($_SESSION["id"])) {
-                            echo $_SESSION["id"];
-                        }
-                        else {
-                            echo "Connexion";
-                        }
-                        ?>
-                    </button>
-                </form>
-            </ul>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
+<?php
+setMenu("Accueil");
+?>
 
     <div class="container-fluid">
         <header>
@@ -243,7 +200,7 @@ if (isset($_SESSION["id"])) {
                     <small class="col d-sm-none text-center text-muted">Samedi</small>
                     <span class="col-1"></span>
                 </h5>
-                <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-info text-white" title="Test Event 1">Test Event 1 <!--<i class="material-icons">person</i>--></a>
+                <p class="d-sm-none">No events</p>
             </div>
             <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
                 <h5 class="row align-items-center">
@@ -284,8 +241,7 @@ if (isset($_SESSION["id"])) {
                     <small class="col d-sm-none text-center text-muted">Jeudi</small>
                     <span class="col-1"></span>
                 </h5>
-                <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-success text-white" title="Test Event 2">Test Event 2</a>
-                <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-danger text-white" title="Test Event 3">Test Event 3</a>
+                <p class="d-sm-none">No events</p>
             </div>
             <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
                 <h5 class="row align-items-center">
@@ -383,7 +339,7 @@ if (isset($_SESSION["id"])) {
                     <small class="col d-sm-none text-center text-muted">Mardi</small>
                     <span class="col-1"></span>
                 </h5>
-                <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-primary text-white" title="Test Event with Super Duper Really Long Title">Tournois Portal Coop</a>
+                <p class="d-sm-none">No events</p>
             </div>
             <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
                 <h5 class="row align-items-center">
@@ -542,16 +498,33 @@ if (isset($_SESSION["id"])) {
         </div>
     </div>
 
-    <div class="card" >
-        <div class="card-body">
-            <h3 class="card-text" style="text-align: center; font-weight: bold;">Pear pub</h3>
+    <div id="rightbottom">
+        <div class="card" id="pub">
+            <div class="card-body">
+                <h3 class="card-text" style="text-align: center; font-weight: bold;">Pear pub</h3>
+            </div>
+            <img class="card-img-top" src="images/pearjeux.png" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">De nombreux jeux disponibles sur <a href="#">pearjeux.fr</a></p>
+            </div>
         </div>
-        <img class="card-img-top" src="images/pearjeux.png" alt="Card image cap" style="width: 16vw; height: auto; min-width: 190px;">
-        <div class="card-body">
-            <p class="card-text">De nombreux jeux disponibles sur <a href="#">pearjeux.fr</a></p>
+
+        <div id="boutons">
+            <a><button type="button" class="btn btn-primary btn-lg btn-block">Nouvel évènement</button></a>
+        </div>
+
+        <div id="suggest">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-text" style="text-align: center; font-weight: bold;">Tournois CS GO</h3>
+                </div>
+                <img class="card-img-top" src="images/csgo.png" alt="Card image cap" style="width: auto; height: 6vh;">
+                <div class="card-body">
+                    <p class="card-text">Organisé par <a href="#">Nitrix</a></p>
+                </div>
+            </div>
         </div>
     </div>
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

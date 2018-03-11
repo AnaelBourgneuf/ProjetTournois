@@ -1,3 +1,5 @@
+response = {"events" : {"12-3-2018" : "Anniversaire du créateur","20-3-2018" : "Tournois portal coop"}, "status" : "OK"}
+
 function bisextile(annee) {
     if ((annee % 4 == 0 && annee % 100 != 0) || annee % 400 == 0) {
         return 1
@@ -123,19 +125,59 @@ function placeJours() {
     pjmax = jMax(pmois+1, pannee)
     //alert(zell)
     listcases = document.getElementsByClassName("date col-1")
+    noevent = document.createElement("p")
+    noevent.className = "d-sm-none"
+    noevent.innerHTML = "No events"
     for (i = 0; i < listcases.length; i++){
+        elem = listcases[i]
+        caseelem = elem.parentElement.parentElement
+        while (caseelem.childElementCount > 1){
+            caseelem.removeChild(caseelem.lastChild)
+        }
         if (i < zell) {
-            listcases[i].innerHTML = pjmax - zell + i + 1
+            elem.innerHTML = pjmax - zell + i + 1
+            caseelem.className = "day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted"
+            caseelem.appendChild(noevent)
         }
         else if (i < zell + jmax){
-            listcases[i].innerHTML = i - zell + 1
+            elem.innerHTML = i - zell + 1
+            caseelem.className = "day col-sm p-2 border border-left-0 border-top-0 text-truncate"
+            date = (i - zell + 1)+"-"+(mois+1)+"-"+annee
+            events = getEvents(date)
+            if (events.length > 0){
+                for (j = 0; j < events.length; j++) {
+                    evenement = document.createElement("a")
+                    evenement.className = "event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-"+choose(["primary","secondary","success","danger","warning","info"])+" text-white"
+                    evenement.title = events[j]
+                    evenement.innerHTML = events[j]
+                    caseelem.appendChild(evenement)
+                }
+            }
         }
         else {
-            listcases[i].innerHTML = i - zell - jmax + 1
+            elem.innerHTML = i - zell - jmax + 1
+            caseelem.className = "day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted"
+            caseelem.appendChild(noevent)
         }
     }
 }
 
+function getEvents(date) {
+    events = new Array()
+    elements = response["events"]
+    for (key in elements){
+        if (key == date){
+            events.push(elements[key])
+        }
+    }
+    //events.push("blabla")
+    return events
+}
+
+function choose(choices) {
+    var index = Math.floor(Math.random() * choices.length)
+    return choices[index]
+}
 
 function init() {
     document.getElementById('moisMoins').addEventListener('click', moisMoins)
