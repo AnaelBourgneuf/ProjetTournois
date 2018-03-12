@@ -233,6 +233,43 @@ function setAsside(){
     </div>";
 }
 
+function setPub(){
+    echo"<div class=\"card\" id=\"pub\">
+            <div class=\"card-body\">
+                <h3 class=\"card-text\" style=\"text-align: center; font-weight: bold;\">Pear pub</h3>
+            </div>
+            <img class=\"card-img-top\" src=\"images/pearjeux.png\" alt=\"Card image cap\">
+            <div class=\"card-body\">
+                <p class=\"card-text\">De nombreux jeux disponibles sur <a href=\"#\">pearjeux.fr</a></p>
+            </div>
+        </div>";
+}
 
+function setPubStyle(){
+    echo "
+        .card {
+            float : right;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #pub img {
+            width: 16vw;
+            height: auto;
+        }
+        
+        @media all and (max-width: 1250px) {
+            #pub {
+                margin-top: 5px;
+            }
+    
+            #pub img {
+                width: auto;
+                height: 29vh;
+            }
+        }
+        ";
+}
 
 ?>
