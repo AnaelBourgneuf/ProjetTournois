@@ -2,10 +2,10 @@
 include "fonctions.php";
 if (isset($_SESSION["id"])) {
     session_start();
-
 }
-//$_SESSION["id"]="Anael";
+$_SESSION["id"]="Anael";
 ?>
+
 <!doctype html>
 <html lang="fr">
 <head>

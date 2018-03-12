@@ -3,25 +3,22 @@ function setMenu($page){
     echo "<nav class=\"navbar navbar-expand-md navbar-dark bg-dark navbar-fixed-top\">
         <div class=\"navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2\">
             <ul class=\"navbar-nav mr-auto\">
-                <li class=\"nav-item"; if ($page = "Accueil"){echo " active";} echo "\">
-                    <a class=\"nav-link\" href=\"#\">Accueil</a>
+                <li class=\"nav-item"; if ($page == "Accueil"){echo " active";} echo "\">
+                    <a class=\"nav-link\" href=\"index.php\">Accueil</a>
                 </li>
-                <li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"//codeply.com\">Codeply</a>
-                </li>
-                <li class=\"nav-item\">
+                <li class=\"nav-item"; if ($page == "Classements"){echo " active";} echo "\">
                     <a class=\"nav-link\" href=\"#\">Classements</a>
                 </li>
-                <li class=\"nav-item dropdown\">
+                <li class=\"nav-item dropdown"; if ($page == "New"){echo " active";} echo "\">
                     <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
                         Nouveau
                     </a>
                     <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">
-                        <a class=\"dropdown-item\" href=\"#\">Tournois</a>
+                        <a class=\"dropdown-item\" href=\"newEvent.php\">Tournois</a>
                         <a class=\"dropdown-item\" href=\"#\">Ameliorations</a>
                     </div>
                 </li>
-                <li class=\"nav-item dropdown\">
+                <li class=\"nav-item dropdown"; if ($page == "Forum"){echo " active";} echo "\">
                     <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
                         Forum
                     </a>
@@ -30,13 +27,13 @@ function setMenu($page){
                         <a class=\"dropdown-item\" href=\"#\">Réclamations</a>
                     </div>
                 </li>
-                <li class=\"nav-item\">
-                    <a class=\"nav-link\" href=\"#\">À propos</a>
+                <li class=\"nav-item"; if ($page == "Apropos"){echo " active";} echo "\">
+                    <a class=\"nav-link\" href=\"aPropos.php\">À propos</a>
                 </li>
             </ul>
         </div>
         <div class=\"mx-auto order-0\">
-            <a class=\"navbar-brand mx-auto\" href=\"#\"><img src=\"images/pttlogo.png\" style=\"width: 2vw;\"> SpearITournament <img src=\"images/rpttlogo.png\" style=\"width: 2vw;\"></a>
+            <a class=\"navbar-brand mx-auto\" href=\"index.php\"><img src=\"images/pttlogo.png\" style=\"width: 2vw;\"> SpearITournament <img src=\"images/rpttlogo.png\" style=\"width: 2vw;\"></a>
             <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\".dual-collapse2\">
                 <span class=\"navbar-toggler-icon\"></span>
             </button>
@@ -46,10 +43,17 @@ function setMenu($page){
                 <form class=\"form-inline\">
                     ";
                         if (!isset($_SESSION["id"])) {
-                            echo "<button class=\"btn btn-sm btn-outline-info mr-sm-2\" type=\"button\">Inscription</button>";
+                            echo "<a href='inscription.php'><button class=\"btn btn-sm btn-"; if ($page != "Inscription"){ echo"outline-";} echo "info mr-sm-2\" type=\"button\">Inscription</button></a>";
                         }
                     
-                    echo "<button class=\"btn btn-outline-warning mr-sm-2\" type=\"button\"><img src=\"images/profile.png\" style=\"width: 2vw\">";
+                    echo "<a href='";
+                        if (isset($_SESSION["id"])) {
+                            echo "profile.php?id=".$_SESSION['id'];
+                        }
+                        else {
+                            echo "inscription.php";
+                        }
+                        echo "'><button class=\"btn btn-"; if ($page != "Profile"){ echo"outline-";} echo "warning mr-sm-2\" type=\"button\"><img src=\"images/profile.png\" style=\"width: 2vw\">";
 
                         if (isset($_SESSION["id"])) {
                             echo $_SESSION["id"];
@@ -58,7 +62,7 @@ function setMenu($page){
                             echo "Connexion";
                         }
                         echo "
-                    </button>
+                    </button></a>
                 </form>
             </ul>
             <form class=\"form-inline\">
