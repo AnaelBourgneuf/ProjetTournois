@@ -18,11 +18,12 @@ include "fonctions.php";
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="js/calendar.js" ></script>
-    <title>SpearITournament - Event</title>
+    <title>SpearITournament - new Event</title>
 </head>
 <body>
 <?php
-setMenu("Event");
+setMenu("New");
 ?>
 </body>
 </html>
+
