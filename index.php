@@ -1,9 +1,7 @@
 <?php
-include "fonctions.php";
-if (isset($_SESSION["id"])) {
-    session_start();
-}
+session_start();
 $_SESSION["id"]="Anael";
+include "fonctions.php";
 ?>
 
 <!doctype html>
@@ -25,7 +23,9 @@ $_SESSION["id"]="Anael";
 
 
     <style>
+        <?php
         setMenuStyle();
+        ?>
 
         /*pour le calendrier*/
         @media (max-width:575px) {
@@ -55,90 +55,23 @@ $_SESSION["id"]="Anael";
             margin-left: 1vw;
         }
 
-        #rightbottom {
-            width: 17vw;
-            min-width: 200px;
-            float: right;
-            margin: 5px;
-            padding: 5px;
-        }
-
-        #pub {
-            margin-top: 45px;
-        }
-
-        #boutons {
-            display: flex;
-            flex-direction: column;
-        }
-
-        #boutons button {
-            margin-top: 3vh;
-        }
-
-        #suggest {
-            margin-top: 20px;
-        }
-
-        .card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #pub img {
-            width: 16vw;
-            height: auto;
-        }
-
-        @media all and (max-height: 950px) {
-            #suggest {
-                display: none;
-            }
-        }
-
         @media all and (max-width: 1250px) {
             .container-fluid {
                 max-width: 96.5vw;
                 float: none;
             }
-
-            .card {
-                margin-top: 0px;
-            }
-
-            #rightbottom {
-                margin-left: 0.5vw;
-                margin-top: 0px;
-                display: block;
-                width: 97.5vw;
-                float: none;
-                height: 50vh;
-            }
-
-            #pub {
-                margin-top: 5px;
-            }
-
-            #pub img {
-                width: auto;
-                height: 29vh;
-            }
-
-            #suggest {
-                display: block;
-            }
         }
 
-        button :hover {
-            cursor: pointer;
-        }
+        <?php
+        setAssideStyle();
+        ?>
+
     </style>
 </head>
 <body>
-<?php
-setMenu("Accueil");
-?>
+    <?php
+    setMenu("Accueil");
+    ?>
 
     <div class="container-fluid">
         <header>
@@ -498,38 +431,8 @@ setMenu("Accueil");
         </div>
     </div>
 
-    <div id="rightbottom">
-        <div class="card" id="pub">
-            <div class="card-body">
-                <h3 class="card-text" style="text-align: center; font-weight: bold;">Pear pub</h3>
-            </div>
-            <img class="card-img-top" src="images/pearjeux.png" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">De nombreux jeux disponibles sur <a href="#">pearjeux.fr</a></p>
-            </div>
-        </div>
-
-        <div id="boutons">
-            <a><button type="button" class="btn btn-primary btn-lg btn-block">Nouvel évènement</button></a>
-        </div>
-
-        <div id="suggest">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-text" style="text-align: center; font-weight: bold;">Tournois CS GO</h3>
-                </div>
-                <img class="card-img-top" src="images/csgo.png" alt="Card image cap" style="width: auto; height: 6vh;">
-                <div class="card-body">
-                    <p class="card-text">Organisé par <a href="#">Nitrix</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+    <?php
+    setAsside();
+    ?>
+    </body>
 </html>

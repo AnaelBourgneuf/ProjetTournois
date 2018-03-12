@@ -1,8 +1,7 @@
 <?php
+session_start();
+//$_SESSION["id"]="Anael";
 include "fonctions.php";
-if (isset($_SESSION["id"])) {
-    session_start();
-}
 ?>
 
 <!doctype html>
