@@ -248,7 +248,10 @@ function setPub(){
 function setPubStyle(){
     echo "
         .card {
-            float : right;
+            float: right;
+            position : fixed;
+            top : 100px;
+            right : 10px;
             display: flex;
             flex-direction: column;
             align-items: center;

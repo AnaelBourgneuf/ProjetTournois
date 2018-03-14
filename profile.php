@@ -17,7 +17,6 @@ include "fonctions.php";
     <!-- Material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script src="js/calendar.js" ></script>
     <title>SpearITournament - Profile</title>
 </head>
 <body>

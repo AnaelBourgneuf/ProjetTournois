@@ -1,6 +1,7 @@
 <?php
 session_start();
-$_SESSION["id"]="Anael";
+//$_SESSION["id"]="Anael";
+//session_destroy();
 include "fonctions.php";
 ?>
 
@@ -17,7 +18,7 @@ include "fonctions.php";
     <!-- Material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script src="js/calendar.js" ></script>
+    <script src="js/calendar.js"></script>
     <title>SpearITournament - Accueil</title>
 
 
