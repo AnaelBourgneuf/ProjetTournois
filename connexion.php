@@ -2,6 +2,11 @@
 session_start();
 //$_SESSION["id"]="Anael";
 include "fonctions.php";
+
+if (isset($_GET["inscription"])){
+    var_dump($_POST);
+    //$testUser = getUser($_POST["email"]);
+}
 ?>
     <!doctype html>
     <html lang="fr">

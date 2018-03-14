@@ -295,4 +295,18 @@ function setFormStyle(){
         }";
 }
 
+function getBDD(){
+    try{
+        return new PDO('mysql:host=localhost;dbname=spearitournament;charset=utf8', "root", "root");
+    }
+    catch(Exception $err){
+        die("Debug: problème de bdd\n" . $err);
+    }
+}
+
+function getUser($mail){
+    $bdd = getBDD();
+    return $bdd -> query("SELECT * FROM `user` WHERE user_email =". $mail) -> fetchAll(PDO::FETCH_ASSOC);
+}
+
 ?>
