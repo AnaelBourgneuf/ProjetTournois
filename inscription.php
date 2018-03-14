@@ -17,22 +17,28 @@ include "fonctions.php";
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>_SpearITournament - Inscription</title>
+    
+    <style>
+        <?php
+        setPubStyle();
+        ?>
+
+        #inscription {
+            margin: 10px;
+            width: 75vw;
+        }
+
+        .custom-checkbox {
+            margin-right: 20px;
+        }
+
+        .custom-control-label {
+            width: 250px;
+            margin: 2px;
+        }
+    </style>
 </head>
 
-<style>
-    <?php
-    setPubStyle();
-    ?>
-
-    #inscription {
-        margin: 10px;
-        width: 75vw;
-    }
-
-    .custom-checkbox {
-        margin-right: 20px;
-    }
-</style>
 <body>
 <?php
 setMenu("Inscription");
