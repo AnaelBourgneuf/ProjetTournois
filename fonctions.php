@@ -51,9 +51,9 @@ function setMenu($page){
                             echo "profile.php?id=".$_SESSION['id'];
                         }
                         else {
-                            echo "inscription.php";
+                            echo "connexion.php";
                         }
-                        echo "'><button class=\"btn btn-"; if ($page != "Profile"){ echo"outline-";} echo "warning mr-sm-2\" type=\"button\"><img src=\"images/profile.png\" style=\"width: 2vw\">";
+                        echo "'><button class=\"btn btn-"; if ($page != "Profil"){ echo"outline-";} echo "warning mr-sm-2\" type=\"button\"><img src=\"images/profile.png\" style=\"width: 2vw\">";
 
                         if (isset($_SESSION["id"])) {
                             echo $_SESSION["id"];
@@ -273,6 +273,26 @@ function setPubStyle(){
             }
         }
         ";
+}
+
+function setFormStyle(){
+    echo "#form {
+            margin: 10px;
+            width: 75vw;
+        }
+
+        .custom-checkbox {
+            margin-right: 20px;
+        }
+
+        .custom-control-label {
+            width: 250px;
+            margin: 2px;
+        }
+        
+        #submit {
+            margin-top: 10px;
+        }";
 }
 
 ?>

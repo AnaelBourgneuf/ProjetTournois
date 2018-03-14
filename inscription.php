@@ -21,21 +21,10 @@ include "fonctions.php";
     <style>
         <?php
         setPubStyle();
+        setFormStyle();
         ?>
 
-        #inscription {
-            margin: 10px;
-            width: 75vw;
-        }
 
-        .custom-checkbox {
-            margin-right: 20px;
-        }
-
-        .custom-control-label {
-            width: 250px;
-            margin: 2px;
-        }
     </style>
 </head>
 
@@ -44,7 +33,7 @@ include "fonctions.php";
 setMenu("Inscription");
 ?>
 
-<form id="inscription">
+<form id="form">
     <div class="row">
         <div class="form-group col imput-group">
             <label for="pseudo">Pseudo</label>
