@@ -16,8 +16,8 @@ include "fonctions.php";
     <!-- Material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <title>_SpearITournament - Inscription</title>
-    
+    <title>SpearITournament - Inscription</title>
+
     <style>
         <?php
         setPubStyle();
