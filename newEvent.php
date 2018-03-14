@@ -18,76 +18,65 @@ include "fonctions.php";
     <!-- Material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script src="js/calendar.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.8.1/combined/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.8.1/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
     <title>SpearITournament - Event</title>
 
     <style>
     <?php
     setMenuStyle();
-    setAssideStyle();
+    setPubStyle();
+    setFormStyle();
     ?>
 
-    form {
-        width : 60vw;
-        margin : 1vw;
-        margin-right: 1vw !important;
-    }
+   
     </style>
 </head>
 <body>
 <?php
 setMenu("Event");
+  
 ?>
 
-<form>
+<form id="form">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Titre du Tournoi :</label>
-      <input type="text" class="" id="" placeholder="">
+      <label for="Titre">Titre du Tournoi :</label>
+      <input type="text" class="form-control" id="Titre" placeholder="TournoiLand, Le Tournoi des geeks ....">
     </div>
     <div class="form-group col-md-6">
       <label for="">Jeux Proposés :</label>
-      <input type="text" class="form-control" id="inputPassword4" placeholder="ex: Couter Strike Global Offensive">
+      <input type="text" class="form-control" id="inputPassword4" placeholder="ex: Couter Strike Global Offensive, League of Legends ....">
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress">Date du Tournoi :</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    <input type="date" class="form-control" id="inputAddress" placeholder="">
   </div>
+  
   <div class="form-group">
     <label for="inputAddress2">Mode de jeu :</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Co-op, Solo, Contre la Montre, etc ...">
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">Nombre Maximum De Participants :</label>
-      <input type="text" class="form-control" id="inputCity">
+      <input type="number" class="form-control" id="inputCity">
     </div>
     <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
+      <label for="inputState">Nombre Minimum De Participants :</label>
+      <input type="number" class="form-control">
     </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-    </div>
-  </div>
   <button type="submit" class="btn btn-primary">Valider Le Tournoi</button>
 </form>
 
 <?php
-setAsside();
+setPub();
 ?>
 </body>
 </html>
