@@ -48,7 +48,7 @@ function setMenu($page){
                     
                     echo "<a href='";
                         if (isset($_SESSION["id"])) {
-                            echo "profile.php?id=".$_SESSION['id'];
+                            echo "profil.php?id=".$_SESSION['id'];
                         }
                         else {
                             echo "connexion.php";
@@ -293,6 +293,72 @@ function setFormStyle(){
         #submit {
             margin-top: 10px;
         }";
+}
+
+function getBDD(){
+    try{
+        return new PDO('mysql:host=localhost;dbname=spearitournament;charset=utf8', "root", "root");
+    }
+    catch(Exception $err){
+        die("Debug: problème de bdd\n" . $err);
+    }
+}
+
+function getUserByMail($mail){
+    $bdd = getBDD();
+    //var_dump($mail);
+    $request = $bdd -> prepare("SELECT user_email FROM `sprt_user` WHERE user_email = \"".$mail."\"");
+    $request ->execute();
+    $result = $request->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function getUserByPseudo($pseudo){
+    $bdd = getBDD();
+    //var_dump($mail);
+    $request = $bdd -> prepare("SELECT user_email FROM `sprt_user` WHERE user_nick = \"".$pseudo."\"");
+    $request ->execute();
+    $result = $request->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function addUser($mail, $nick, $passwd, $interest = null, $avatar = null, $admin = 0, $id = null, $lname = null, $name = null){
+    $bdd = getBDD();
+    $request = $bdd -> prepare("INSERT INTO `sprt_user` (`user_id`, `user_email`, `user_lname`, `user_name`, `user_interest`, `user_nick`, `user_isadmin`, `user_avatar`, `user_passwd`) VALUES (:id, :mail, :lnom, :nom, :interest, :nick, :admin, :avatar, :passwd)");
+    $request -> bindparam(":id", $id);
+    $request -> bindparam(":mail", $mail);
+    $request -> bindparam(":lnom", $lname);
+    $request -> bindparam(":nom", $name);
+    $request -> bindparam(":interest", $interest);
+    $request -> bindparam(":nick", $nick);
+    $request -> bindparam(":admin", $admin);
+    $request -> bindparam(":avatar", $avatar);
+    $request -> bindparam(":passwd", $passwd);
+    $request ->execute();
+}
+
+function verifPasswd($mail, $passwd){
+    $bdd = getBDD();
+    //var_dump($mail);
+    $request = $bdd -> prepare("SELECT user_passwd FROM `sprt_user` WHERE user_email = \"".$mail."\""."AND user_passwd = \"".sha1($passwd)."\"");
+    $request ->execute();
+    $result = $request->fetchAll(PDO::FETCH_ASSOC);
+    //var_dump($result);
+    if (sizeof($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
+function getUserNickByMail($mail){
+    $bdd = getBDD();
+    //var_dump($mail);
+    $request = $bdd -> prepare("SELECT user_nick FROM `sprt_user` WHERE user_email = \"".$mail."\"");
+    $request ->execute();
+    $result = $request->fetchAll(PDO::FETCH_ASSOC);
+    $nick = $result[0]["user_nick"];
+    //var_dump($nick);
+    return $nick;
 }
 
 ?>
