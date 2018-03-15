@@ -1,8 +1,16 @@
 <?php
 session_start();
+
 //$_SESSION["id"]="Anael";
 //session_destroy();
 include "fonctions.php";
+
+if (isset($_GET["connexion"])){
+    if (verifPasswd($_POST["mail"], $_POST["passwd"])){
+        //echo "connecté";
+        $_SESSION["id"] = getUserNickByMail($_POST["mail"]);
+    }
+}
 ?>
 
 <!doctype html>

@@ -3,10 +3,6 @@ session_start();
 //$_SESSION["id"]="Anael";
 include "fonctions.php";
 
-if (isset($_GET["inscription"])){
-    var_dump($_POST);
-    //$testUser = getUser($_POST["email"]);
-}
 ?>
     <!doctype html>
     <html lang="fr">
@@ -21,7 +17,7 @@ if (isset($_GET["inscription"])){
         <!-- Material icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <title>SpearITournament - Inscription</title>
+        <title>SpearITournament - Connexion</title>
 
         <style>
             <?php
@@ -38,20 +34,46 @@ if (isset($_GET["inscription"])){
         setPub();
         ?>
 
-        <form id="form">
+        <form id="form" method="post" action="index.php?connexion=TRUE">
+            <?php
+                if (isset($_GET["inscription"])) {
+                    $testUserMail = sizeof(getUserByMail($_POST["eMail"]));
+                    $testUser = sizeof(getUserByPseudo($_POST["pseudo"]));
+                    if ($testUserMail < 1) {
+                        if ($testUser < 1) {
+                            echo "<div class=\"progress\" style='margin: 30px 0px;'>
+                                      <div id='progressBar' class=\"progress-bar progress-bar-striped progress-bar-animated bg-warning\" role=\"progressbar\" style=\"width: 0%;\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>
+                                  </div>
+                            ";
+                            echo "<script src='js/inscription.js'></script>";
+                            addUser($_POST["eMail"], $_POST["pseudo"], sha1($_POST["passwd"]));
+                        }
+                        else {
+                            echo "<div class=\"alert alert-danger\" role=\"alert\">
+                                      Ce pseudo est déja utilisé, <a href='inscription.php'>réessayez</a>.
+                                  </div>";
+                        }
+                    }
+                    else {
+                        echo "<div class=\"alert alert-danger\" role=\"alert\">
+                                  Cette adresse mail est déja utilisée, <a href='inscription.php'>réessayez</a>.
+                              </div>";
+                    }
+                }
+            ?>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <label for="mail">Email address</label>
+                <input name="mail" type="email" class="form-control" id="mail" aria-describedby="emailHelp" placeholder="Enter email">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="passwd">Password</label>
+                <input name="passwd" type="password" class="form-control" id="passwd" placeholder="Password">
             </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
+<!--            <div class="form-check">-->
+<!--                <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--                <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--            </div>-->
             <button type="submit" class="btn btn-warning" id="submit">Submit</button>
         </form>
     </body>
