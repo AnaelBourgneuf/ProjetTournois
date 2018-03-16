@@ -18,10 +18,18 @@ include "fonctions.php";
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>SpearITournament - Day </title>
+
+    <style>
+        <?php
+            setMenuStyle();
+            setPubStyle();
+        ?>
+    </style>
 </head>
 <body>
 <?php
 setMenu("Day");
+setPub();
 ?>
 </body>
 </html>

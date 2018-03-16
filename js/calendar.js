@@ -123,7 +123,6 @@ function placeJours() {
         pannee -= 1
     }
     pjmax = jMax(pmois+1, pannee)
-    //alert(zell)
     listcases = document.getElementsByClassName("date col-1")
     noevent = document.createElement("p")
     noevent.className = "d-sm-none"
@@ -143,6 +142,7 @@ function placeJours() {
             elem.innerHTML = i - zell + 1
             caseelem.className = "day col-sm p-2 border border-left-0 border-top-0 text-truncate"
             date = (i - zell + 1)+"-"+(mois+1)+"-"+annee
+            caseelem.setAttribute("href", "day.php?date="+date)
             events = getEvents(date)
             if (events.length > 0){
                 for (j = 0; j < events.length; j++) {
@@ -170,7 +170,6 @@ function getEvents(date) {
             events.push(elements[key])
         }
     }
-    //events.push("blabla")
     return events
 }
 
