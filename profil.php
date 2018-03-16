@@ -18,12 +18,20 @@ include "fonctions.php";
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <title>SpearITournament - Profil</title>
+
+        <style>
+            #disconnect {
+                float: right;
+                margin: 15px;
+            }
+        </style>
     </head>
     <body>
         <?php
         setMenu("Profil");
         ?>
 
+        <a href="index.php?disconnect=TRUE" id="disconnect"><button type="button" class="btn btn-lg btn-outline-danger">Disconnect</button></a>
 
     </body>
 </html>

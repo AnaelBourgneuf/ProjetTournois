@@ -123,7 +123,6 @@ function placeJours() {
         pannee -= 1
     }
     pjmax = jMax(pmois+1, pannee)
-    //alert(zell)
     listcases = document.getElementsByClassName("date col-1")
     noevent = document.createElement("p")
     noevent.className = "d-sm-none"
@@ -137,12 +136,14 @@ function placeJours() {
         if (i < zell) {
             elem.innerHTML = pjmax - zell + i + 1
             caseelem.className = "day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted"
+            caseelem.setAttribute("href", "#")
             caseelem.appendChild(noevent)
         }
         else if (i < zell + jmax){
             elem.innerHTML = i - zell + 1
             caseelem.className = "day col-sm p-2 border border-left-0 border-top-0 text-truncate"
             date = (i - zell + 1)+"-"+(mois+1)+"-"+annee
+            caseelem.setAttribute("href", "day.php?date="+date)
             events = getEvents(date)
             if (events.length > 0){
                 for (j = 0; j < events.length; j++) {
@@ -157,6 +158,7 @@ function placeJours() {
         else {
             elem.innerHTML = i - zell - jmax + 1
             caseelem.className = "day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted"
+            caseelem.setAttribute("href", "#")
             caseelem.appendChild(noevent)
         }
     }
@@ -170,7 +172,6 @@ function getEvents(date) {
             events.push(elements[key])
         }
     }
-    //events.push("blabla")
     return events
 }
 
@@ -179,9 +180,11 @@ function choose(choices) {
     return choices[index]
 }
 
+
 function init() {
     document.getElementById('moisMoins').addEventListener('click', moisMoins)
     document.getElementById('moisPlus').addEventListener('click', moisPlus)
+    page = document.title
     placeJours()
 }
 
