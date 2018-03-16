@@ -315,8 +315,20 @@ function setFormStyle(){
         ";
 }
 
-function getSeparatedDate($car,$date){
+function getSeparatedDate($date, $car="-"){
     return explode($car,$date);
+}
+
+function getDateString($date){
+    $explodedDate = getSeparatedDate($date);
+    //var_dump($explodedDate);
+    $dateStr = $explodedDate[0]." ".getMois(intval($explodedDate[1]))." ".intval($explodedDate[2]);
+    return $dateStr;
+}
+
+function getMois($intMois) {
+    $tabMois = array("Janvier","Frévier","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
+    return $tabMois[$intMois-1];
 }
 
 function getEvents($date) {
@@ -329,6 +341,32 @@ function getEvents($date) {
         }
     }
     return $events;
+}
+
+function getDateToSend($date) {
+    $chiffres = array("1","2","3","4","5","6","7","8","9","0");
+    $splitedDate = explode("-", $date);
+    $resdate = "";
+    $resdate .= $splitedDate[2]."-";
+    if (in_array($splitedDate[1], $chiffres)){
+        $resdate .= "0".$splitedDate[1]."-";
+    }
+    else {
+        $resdate .= $splitedDate[1]."-";
+    }
+    if (in_array($splitedDate[0], $chiffres)){
+        $resdate .= "0".$splitedDate[0];
+    }
+    else {
+        $resdate .= $splitedDate[0];
+    }
+    return $resdate;
+}
+
+function getEventsInBDD($date) {
+    $date = getDateToSend($date);
+    $bdd = getBDD();
+    $request = $bdd -> prepare("SELECT ev_name ev_creator FROM sprt_event WHERE ev_stamp LIKE \"".$date."\"");
 }
 
 function getBDD(){

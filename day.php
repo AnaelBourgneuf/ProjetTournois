@@ -17,6 +17,8 @@ include "fonctions.php";
         <!-- Material icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+        <script src="js/day.js"></script>
+
         <title>SpearITournament - Day</title>
 
         <style>
@@ -35,15 +37,21 @@ include "fonctions.php";
     <body>
         <?php
         setMenu("Day");
-        setPub();
         $events = getEvents($_GET["date"]);
         //var_dump($events);
 
 
+
         ?>
         <div id="planner">
-            <h4 style="text-align: center; margin: 1vh 0;"><button style="border-radius: 10px; border: 1px solid black; background-color: #f5f5f5; margin-right: 1vw;" id="moisMoins"><--</button> <span id="jour">1</span> <span id="mois">Mars</span> <span id="annee">2018</span> <button style="border-radius: 10px; border: 1px solid black; background-color: #f5f5f5; margin-left: 1vw;" id="moisPlus">--></button></h4>
-
+            <h4 style="text-align: center; margin: 1vh 0;"><button style="border-radius: 10px; border: 1px solid black; background-color: #f5f5f5; margin-right: 1vw;" id="jourMoins"><--</button> <?php echo getDateString($_GET["date"]) ?> <button style="border-radius: 10px; border: 1px solid black; background-color: #f5f5f5; margin-left: 1vw;" id="jourPlus">--></button></h4>
+            <div class="row border" style="border-radius: 20px; display: flex; flex-direction: column; align-items: center; padding: 0px 10px;">
+                <a style="margin: 5px;" class="btn btn-primary btn-lg btn-block" title="Anniversaire du créateur">Anniversaire du créateur</a>
+            </div>
         </div>
+
+        <?php
+            setPub();
+        ?>
     </body>
 </html>
