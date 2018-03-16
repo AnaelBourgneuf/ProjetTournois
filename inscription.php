@@ -105,6 +105,7 @@ setMenu("Inscription");
             var mail2 = eMail2.value;
             var mdp = document.getElementById("passwd");
             var mdpv = mdp.value;
+            var pseudo = document.getElementById("pseudo").value;
 
             console.log("mail1 : "+mail1+" mail2 : "+mail2)
             if (mail1 != mail2){
@@ -131,8 +132,8 @@ setMenu("Inscription");
                 alert("votre mot de passe doit contenir au moins une lettre MAJUSCULE.");
                 return false;
             }
-            if (mail1.indexOf("<") != -1){
-                alert("stop FDP");
+            if (pseudo.indexOf("<") != -1){
+                alert("stop FDP !");
                 return false
             }
             return true;
