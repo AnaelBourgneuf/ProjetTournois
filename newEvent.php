@@ -63,17 +63,21 @@ setMenu("Event");
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">Nombre Maximum De Participants :</label>
-      <input type="number" class="form-control" id="inputCity">
+      <input type="number" class="form-control" id="inputCity" min="0">
     </div>
     <div class="form-group col-md-4">
       <label for="inputState">Nombre Minimum De Participants :</label>
-      <input type="number" class="form-control">
+      <input type="number" class="form-control" min="0">
     </div>
   <button type="submit" class="btn btn-primary" style="height:3em; margin-top: 1.5em;">Valider Le Tournoi</button>
 </form>
 
 <?php
 setPub();
+
+
+//$bdd= getBDD();
+//$newEvent=$bdd -> query ("INSERT INTO 'sprt_event' VALUES ")
 ?>
 </body>
 </html>
