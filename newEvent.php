@@ -40,34 +40,34 @@ setMenu("Event");
   
 ?>
 
-<form id="form">
+<form id="form" method="post" action="newEvent.php">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Titre">Titre du Tournoi :</label>
-      <input type="text" class="form-control" id="Titre" placeholder="TournoiLand, Le Tournoi des geeks ....">
+      <input type="text" class="form-control" id="Titre" placeholder="TournoiLand, Le Tournoi des geeks ...." name="title">
     </div>
     <div class="form-group col-md-6">
       <label for="">Jeux Proposés :</label>
-      <input type="text" class="form-control" id="inputPassword4" placeholder="ex: Couter Strike Global Offensive, League of Legends ....">
+      <input type="text" class="form-control" id="inputPassword4" placeholder="ex: Couter Strike Global Offensive, League of Legends ...." name="game">
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress">Date du Tournoi :</label>
-    <input type="date" class="form-control" id="inputAddress" placeholder="">
+    <input type="date" class="form-control" id="inputAddress" placeholder="" name="date">
   </div>
   
   <div class="form-group">
     <label for="inputAddress2">Mode de jeu :</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Co-op, Solo, Contre la Montre, etc ...">
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Co-op, Solo, Contre la Montre, etc ..." name="modal">
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">Nombre Maximum De Participants :</label>
-      <input type="number" class="form-control" id="inputCity" min="0">
+      <input type="number" class="form-control" id="inputCity" min="0" name="nbmax">
     </div>
     <div class="form-group col-md-4">
       <label for="inputState">Nombre Minimum De Participants :</label>
-      <input type="number" class="form-control" min="0">
+      <input type="number" class="form-control" min="0" name="nbmin">
     </div>
   <button type="submit" class="btn btn-primary" style="height:3em; margin-top: 1.5em;">Valider Le Tournoi</button>
 </form>
@@ -75,9 +75,27 @@ setMenu("Event");
 <?php
 setPub();
 
+if (isset($_POST["title"])){
+  $title=$_POST["title"];
+}
+if (isset($_POST["game"])){
+  $game=$_POST["game"];
+}
+if (isset($_POST["date"])){
+  $date=$_POST["date"];
+}
+if (isset($_POST["modal"])){
+  $modal=$_POST["modal"];
+}
+if (isset($_POST["nbmax"])){
+  $nbmax=$_POST["nbmax"];
+}
+if (isset($_POST["nbmin"])){
+  $nbmin=$_POST["nbmin"];
+}
 
 //$bdd= getBDD();
-//$newEvent=$bdd -> query ("INSERT INTO 'sprt_event' VALUES ")
+//$newEvent=$bdd -> query ("INSERT INTO 'sprt_event'(ev_name,ev_creator,ev_contlist,ev_stamp,ev_cont_min,ev_cont_max,ev_game,ev_modal) VALUES() ")
 ?>
 </body>
 </html>
