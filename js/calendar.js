@@ -136,6 +136,7 @@ function placeJours() {
         if (i < zell) {
             elem.innerHTML = pjmax - zell + i + 1
             caseelem.className = "day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted"
+            caseelem.setAttribute("href", "#")
             caseelem.appendChild(noevent)
         }
         else if (i < zell + jmax){
@@ -157,6 +158,7 @@ function placeJours() {
         else {
             elem.innerHTML = i - zell - jmax + 1
             caseelem.className = "day col-sm p-2 border border-left-0 border-top-0 text-truncate d-none d-sm-inline-block bg-light text-muted"
+            caseelem.setAttribute("href", "#")
             caseelem.appendChild(noevent)
         }
     }
@@ -178,9 +180,11 @@ function choose(choices) {
     return choices[index]
 }
 
+
 function init() {
     document.getElementById('moisMoins').addEventListener('click', moisMoins)
     document.getElementById('moisPlus').addEventListener('click', moisPlus)
+    page = document.title
     placeJours()
 }
 

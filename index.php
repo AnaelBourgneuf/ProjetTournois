@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+
+if (isset($_GET["disconnect"])){
+    if ($_GET["disconnect"] == "TRUE"){
+        $_SESSION["id"]=null;
+        session_destroy();
+    }
+}
 //$_SESSION["id"]="Anael";
 //session_destroy();
 include "fonctions.php";
@@ -11,6 +18,7 @@ if (isset($_GET["connexion"])){
         $_SESSION["id"] = getUserNickByMail($_POST["mail"]);
     }
 }
+
 ?>
 
 <!doctype html>

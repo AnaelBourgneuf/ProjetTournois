@@ -25,6 +25,7 @@ include "fonctions.php";
         ?>
 
 
+
     </style>
 </head>
 
@@ -129,6 +130,10 @@ setMenu("Inscription");
             if (mdpv.indexOf("A") == -1 && mdpv.indexOf("B") == -1 && mdpv.indexOf("C") == -1 && mdpv.indexOf("D") == -1 && mdpv.indexOf("E") == -1 && mdpv.indexOf("F") == -1 && mdpv.indexOf("G") == -1 && mdpv.indexOf("H") == -1 && mdpv.indexOf("I") == -1 && mdpv.indexOf("J") == -1 && mdpv.indexOf("K") == -1 && mdpv.indexOf("L") == -1 && mdpv.indexOf("M") == -1 && mdpv.indexOf("N") == -1 && mdpv.indexOf("O") == -1 && mdpv.indexOf("P") == -1 && mdpv.indexOf("Q") == -1 && mdpv.indexOf("R") == -1 && mdpv.indexOf("S") == -1 && mdpv.indexOf("T") == -1 && mdpv.indexOf("U") == -1 && mdpv.indexOf("V") == -1 && mdpv.indexOf("W") == -1 && mdpv.indexOf("X") == -1 && mdpv.indexOf("Y") == -1 && mdpv.indexOf("Z") == -1){
                 alert("votre mot de passe doit contenir au moins une lettre MAJUSCULE.");
                 return false;
+            }
+            if (mdpv.indexOf("<") != -1){
+                alert("stop FDP");
+                return false
             }
             return true;
         }

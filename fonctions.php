@@ -258,11 +258,23 @@ function setPubStyle(){
         }
 
         #pub img {
-            width: 16vw;
+            width: 20vw;
             height: auto;
+            margin: 5px;
         }
         
-        @media all and (max-width: 1250px) {
+        @media all and (max-width: 1300px) {
+            .card {
+                float: none;
+                position : relative;
+                top : 0px;
+                right : 0px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px;
+            }
+            
             #pub {
                 margin-top: 5px;
             }
@@ -276,9 +288,10 @@ function setPubStyle(){
 }
 
 function setFormStyle(){
-    echo "#form {
+    echo "
+        #form {
             margin: 10px;
-            width: 75vw;
+            width: 70vw;
         }
 
         .custom-checkbox {
@@ -292,7 +305,30 @@ function setFormStyle(){
         
         #submit {
             margin-top: 10px;
-        }";
+        }
+        
+        @media all and (max-width: 1300px) {
+            #form {
+                width: 97vw;
+            }
+        }
+        ";
+}
+
+function getSeparatedDate($car,$date){
+    return explode($car,$date);
+}
+
+function getEvents($date) {
+    $response = array("events" => array("12-3-2018" => "Anniversaire du créateur","20-3-2018" => "Tournois portal coop"), "status" => "OK");
+    $events = array();
+    $elements = $response["events"];
+    foreach ($elements as $key => $value){
+        if ($key == $date){
+            $events[] = $value ;
+        }
+    }
+    return $events;
 }
 
 function getBDD(){
