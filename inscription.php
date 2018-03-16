@@ -131,7 +131,7 @@ setMenu("Inscription");
                 alert("votre mot de passe doit contenir au moins une lettre MAJUSCULE.");
                 return false;
             }
-            if (mdpv.indexOf("<") != -1){
+            if (mail1.indexOf("<") != -1){
                 alert("stop FDP");
                 return false
             }
