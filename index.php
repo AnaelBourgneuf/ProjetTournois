@@ -19,7 +19,27 @@ if (isset($_GET["connexion"])){
     }
 }
 
+$date = "";
+if (isset($_GET["date"])){
+    $date = $_GET["date"];
+}
+else {
+    $date = date("n-Y");
+}
+
+
+$events = getEventsOfTheMonthInBDD($date);
+$usableEvents = array();
+for ($i = 0; $i < sizeof($events); $i++){
+    $day = explode(" ",$events[$i]["ev_stamp"])[0];
+    //var_dump($day);
+    $usableEvents[$day] = array("name" => $events[$i]["ev_name"], "creator" => $events[$i]["ev_creator"]);
+}
+//var_dump($usableEvents);
 ?>
+<script>
+    response = <?php echo json_encode($usableEvents); ?>;
+</script>
 
 <!doctype html>
 <html lang="fr">
@@ -98,7 +118,7 @@ if (isset($_GET["connexion"])){
 
     <div class="container-fluid">
         <header>
-            <h4 style="text-align: center; margin: 1vh 0;"><button style="border-radius: 10px; border: 1px solid black; background-color: #f5f5f5; margin-right: 1vw;" id="moisMoins"><--</button> <span id="mois">Mars</span> <span id="annee">2018</span> <button style="border-radius: 10px; border: 1px solid black; background-color: #f5f5f5; margin-left: 1vw;" id="moisPlus">--></button></h4>
+            <h4 style="text-align: center; margin: 1vh 0;"><a href="index.php?date=<?php echo getPreviousMonth($date)?>"><button style="border-radius: 10px; border: 1px solid black; background-color: #f5f5f5; margin-right: 1vw;" id="moisMoins"><--</button></a> <span id="mois"><?php echo getMois(getSeparatedDate($date)[0])?></span> <span id="annee"><?php echo getSeparatedDate($date)[1]?></span> <a href="index.php?date=<?php echo getNextMonth($date)?>"><button style="border-radius: 10px; border: 1px solid black; background-color: #f5f5f5; margin-left: 1vw;" id="moisPlus">--></button></a></h4>
             <div class="row d-none d-sm-flex p-1 bg-dark text-white" style="border-radius: 5px 5px 0px 0px;">
                 <h5 class="col-sm p-1 text-center">Lundi</h5>
                 <h5 class="col-sm p-1 text-center">Mardi</h5>

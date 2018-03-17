@@ -315,6 +315,39 @@ function setFormStyle(){
         ";
 }
 
+function choose($choices) {
+    $index = random_int(0, sizeof($choices)-1);
+    return $choices[$index];
+}
+
+function bisextile($annee) {
+    if (($annee % 4 == 0 && $annee % 100 != 0) || $annee % 400 == 0) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+function jMax($mois, $annee) {
+    $m = array(1,3,5,7,8,10,12);
+    if ($mois == 2) {
+        $b = bisextile($annee);
+        if ($b == true) {
+            return 29;
+        }
+        else {
+            return 28;
+        }
+    }
+    else if (in_array($mois, $m)) {
+        return 31;
+    }
+    else {
+        return 30;
+    }
+}
+
 function getSeparatedDate($date, $car="-"){
     return explode($car,$date);
 }
@@ -324,6 +357,67 @@ function getDateString($date){
     //var_dump($explodedDate);
     $dateStr = $explodedDate[0]." ".getMois(intval($explodedDate[1]))." ".intval($explodedDate[2]);
     return $dateStr;
+}
+
+function getPreviousMonth($date){
+    $explodedDate = getSeparatedDate($date);
+    for ($i = 0; $i < sizeof($explodedDate); $i++){
+        $explodedDate[$i] = intval($explodedDate[$i]);
+    }
+    $explodedDate[0] -= 1;
+    if ($explodedDate[0] < 1){
+        $explodedDate[1] -= 1;
+        $explodedDate[0] = 12;
+    }
+    return $explodedDate[0]."-".$explodedDate[1];
+}
+
+function getNextMonth($date)
+{
+    $explodedDate = getSeparatedDate($date);
+    for ($i = 0; $i < sizeof($explodedDate); $i++) {
+        $explodedDate[$i] = intval($explodedDate[$i]);
+    }
+    $explodedDate[0] += 1;
+    if ($explodedDate[0] > 12) {
+        $explodedDate[1] += 1;
+        $explodedDate[0] = 1;
+    }
+    return $explodedDate[0] . "-" . $explodedDate[1];
+}
+
+function getPreviousDate($date) {
+    $explodedDate = getSeparatedDate($date);
+    for ($i = 0; $i < sizeof($explodedDate); $i++){
+        $explodedDate[$i] = intval($explodedDate[$i]);
+    }
+    $explodedDate[0] -= 1;
+    if ($explodedDate[0] < 1){
+        $explodedDate[1] -= 1;
+        if ($explodedDate[1] < 1){
+            $explodedDate[2] -= 1;
+            $explodedDate[1] = 12;
+        }
+        $explodedDate[0] = jMax($explodedDate[1], $explodedDate[2]);
+    }
+    return $explodedDate[0]."-".$explodedDate[1]."-".$explodedDate[2];
+}
+
+function getNextDate($date) {
+    $explodedDate = getSeparatedDate($date);
+    for ($i = 0; $i < sizeof($explodedDate); $i++){
+        $explodedDate[$i] = intval($explodedDate[$i]);
+    }
+    $explodedDate[0] += 1;
+    if ($explodedDate[0] > jMax($explodedDate[1], $explodedDate[2])){
+        $explodedDate[1] += 1;
+        $explodedDate[0] = 1;
+        if ($explodedDate[1] > 12){
+            $explodedDate[2] += 1;
+            $explodedDate[1] = 1;
+        }
+    }
+    return $explodedDate[0]."-".$explodedDate[1]."-".$explodedDate[2];
 }
 
 function getMois($intMois) {
@@ -363,10 +457,38 @@ function getDateToSend($date) {
     return $resdate;
 }
 
+function getMonthToSend($date){
+    $splitedDate = getSeparatedDate($date);
+    $chiffres = array("1","2","3","4","5","6","7","8","9","0");
+    $resdate = "";
+    $resdate .= $splitedDate[1]."-";
+    if (in_array($splitedDate[0], $chiffres)){
+        $resdate .= "0".$splitedDate[0];
+    }
+    else {
+        $resdate .= $splitedDate[0];
+    }
+    return $resdate;
+}
+
 function getEventsInBDD($date) {
     $date = getDateToSend($date);
+    //var_dump($date);
     $bdd = getBDD();
-    $request = $bdd -> prepare("SELECT ev_name ev_creator FROM sprt_event WHERE ev_stamp LIKE \"".$date."\"");
+    $request = $bdd -> prepare("SELECT ev_name, ev_creator FROM sprt_event WHERE ev_stamp LIKE \"".$date."%\" ORDER BY ev_stamp");
+    $request -> execute();
+    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function getEventsOfTheMonthInBDD($date) {
+    $date = getMonthToSend($date);
+    //var_dump($date);
+    $bdd = getBDD();
+    $request = $bdd -> prepare("SELECT * FROM sprt_event WHERE ev_stamp LIKE \"%".$date."%\" ORDER BY ev_stamp");
+    $request -> execute();
+    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    return $result;
 }
 
 function getBDD(){
