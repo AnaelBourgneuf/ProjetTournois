@@ -1,4 +1,4 @@
-response = {"events" : {"12-3-2018" : "Anniversaire du créateur","20-3-2018" : "Tournois portal coop"}, "status" : "OK"}
+//response = {"events" : {"12-3-2018" : "Anniversaire du créateur","20-3-2018" : "Tournois portal coop"}, "status" : "OK"}
 
 function bisextile(annee) {
     if ((annee % 4 == 0 && annee % 100 != 0) || annee % 400 == 0) {
@@ -164,12 +164,35 @@ function placeJours() {
     }
 }
 
+function getBddDateFormat(date) {
+    chiffres = ["1","2","3","4","5","6","7","8","9","0"];
+    explodedDate = date.split("-")
+    //console.log(explodedDate)
+    newDate = ""
+    newDate += explodedDate[2]+"-"
+    if (explodedDate[1] in chiffres){
+        newDate += "0"+explodedDate[1]+"-"
+    }
+    else {
+        newDate += explodedDate[1]+"-"
+    }
+    if (explodedDate[0] in chiffres){
+        newDate += "0"+explodedDate[0]
+    }
+    else {
+        newDate += explodedDate[0]
+    }
+    //console.log(newDate)
+    return newDate
+}
+
 function getEvents(date) {
+    date = getBddDateFormat(date)
     events = new Array()
-    elements = response["events"]
+    elements = response
     for (key in elements){
         if (key == date){
-            events.push(elements[key])
+            events.push(elements[key]["name"])
         }
     }
     return events
@@ -182,9 +205,8 @@ function choose(choices) {
 
 
 function init() {
-    document.getElementById('moisMoins').addEventListener('click', moisMoins)
-    document.getElementById('moisPlus').addEventListener('click', moisPlus)
-    page = document.title
+    // document.getElementById('moisMoins').addEventListener('click', moisMoins)
+    // document.getElementById('moisPlus').addEventListener('click', moisPlus)
     placeJours()
 }
 
