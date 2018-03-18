@@ -94,8 +94,8 @@ if (isset($_POST["nbmin"])){
   $nbmin=$_POST["nbmin"];
 }
 
-//$bdd= getBDD();
-//$newEvent=$bdd -> query ("INSERT INTO 'sprt_event'(ev_name,ev_creator,ev_contlist,ev_stamp,ev_cont_min,ev_cont_max,ev_game,ev_modal) VALUES() ")
+$bdd= getBDD();
+$newEvent=$bdd -> query ("INSERT INTO 'sprt_event'(ev_name,ev_creator,ev_contlist,ev_stamp,ev_cont_min,ev_cont_max,ev_game,ev_modal) VALUES($title,$game,$date,$modal,$nbmax,$nbmin) ")
 ?>
 </body>
 </html>
