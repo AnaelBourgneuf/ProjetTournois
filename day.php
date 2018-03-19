@@ -56,7 +56,7 @@ else {
             <?php
                 for ($i = 0; $i < sizeof($events); $i++){
                     echo "<div class=\"row border\" style=\"border-radius: 20px; display: flex; flex-direction: column; align-items: center; padding: 0px 10px;\">
-                              <a style=\"margin: 5px;\" class=\"btn btn-".choose(["primary","secondary","success","danger","warning","info"])." btn-lg btn-block\" title=\"".$events[$i]["ev_name"]."\">".$events[$i]["ev_name"]." organisé par ".$events[$i]["ev_creator"]."</a>
+                              <a style=\"margin: 5px;\" class=\"btn btn-".choose(["primary","secondary","success","danger","warning","info"])." btn-lg btn-block\" title=\"".$events[$i]["ev_name"]."\" href='event.php?id=\"".$events[$i]["ev_id"]."\"'>".$events[$i]["ev_name"]." organisé par ".$events[$i]["ev_creator"]."</a>
                           </div>";
                 }
                 if (sizeof($events) < 1) {

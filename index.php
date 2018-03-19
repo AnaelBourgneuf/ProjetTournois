@@ -33,7 +33,7 @@ $usableEvents = array();
 for ($i = 0; $i < sizeof($events); $i++){
     $day = explode(" ",$events[$i]["ev_stamp"])[0];
     //var_dump($day);
-    $usableEvents[$day] = array("name" => $events[$i]["ev_name"], "creator" => $events[$i]["ev_creator"]);
+    $usableEvents[$day] = array("name" => $events[$i]["ev_name"], "creator" => $events[$i]["ev_creator"], "id" => $events[$i]["ev_id"]);
 }
 //var_dump($usableEvents);
 ?>

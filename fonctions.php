@@ -247,7 +247,7 @@ function setPub(){
 
 function setPubStyle(){
     echo "
-        .card {
+        #pub {
             float: right;
             position : fixed;
             top : 100px;
@@ -264,7 +264,7 @@ function setPubStyle(){
         }
         
         @media all and (max-width: 1300px) {
-            .card {
+            #pub {
                 float: none;
                 position : relative;
                 top : 0px;
@@ -273,9 +273,6 @@ function setPubStyle(){
                 flex-direction: column;
                 align-items: center;
                 margin: 10px;
-            }
-            
-            #pub {
                 margin-top: 5px;
             }
     
@@ -475,7 +472,7 @@ function getEventsInBDD($date) {
     $date = getDateToSend($date);
     //var_dump($date);
     $bdd = getBDD();
-    $request = $bdd -> prepare("SELECT ev_name, ev_creator FROM sprt_event WHERE ev_stamp LIKE \"".$date."%\" ORDER BY ev_stamp");
+    $request = $bdd -> prepare("SELECT ev_name, ev_creator, ev_id FROM sprt_event WHERE ev_stamp LIKE \"".$date."%\" ORDER BY ev_stamp");
     $request -> execute();
     $result = $request -> fetchAll(PDO::FETCH_ASSOC);
     return $result;
@@ -485,7 +482,23 @@ function getEventsOfTheMonthInBDD($date) {
     $date = getMonthToSend($date);
     //var_dump($date);
     $bdd = getBDD();
-    $request = $bdd -> prepare("SELECT * FROM sprt_event WHERE ev_stamp LIKE \"%".$date."%\" ORDER BY ev_stamp");
+    $request = $bdd -> prepare("SELECT * FROM `sprt_event` WHERE ev_stamp LIKE \"%".$date."%\" ORDER BY ev_stamp");
+    $request -> execute();
+    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function getEventById($id){
+    $bdd = getBDD();
+    $request = $bdd -> prepare("SELECT * FROM `sprt_event` WHERE ev_id = ".$id);
+    $request -> execute();
+    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function getEventContestantsId($id){
+    $bdd = getBDD();
+    $request = $bdd -> prepare("SELECT cont_id, cont_score FROM `sprt_contestants` WHERE ev_id = \"".$id."\"");
     $request -> execute();
     $result = $request -> fetchAll(PDO::FETCH_ASSOC);
     return $result;
@@ -513,6 +526,15 @@ function getUserByPseudo($pseudo){
     $bdd = getBDD();
     //var_dump($mail);
     $request = $bdd -> prepare("SELECT user_email FROM `sprt_user` WHERE user_nick = \"".$pseudo."\"");
+    $request ->execute();
+    $result = $request->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function getUserById($id){
+    $bdd = getBDD();
+    //var_dump($mail);
+    $request = $bdd -> prepare("SELECT user_email FROM `sprt_user` WHERE user_id = \"".$id."\"");
     $request ->execute();
     $result = $request->fetchAll(PDO::FETCH_ASSOC);
     return $result;
