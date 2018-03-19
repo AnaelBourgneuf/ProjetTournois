@@ -37,9 +37,9 @@ CREATE TABLE IF NOT EXISTS `sprt_user` (
 -- Contenu de la table `sprt_user`
 --
 
-INSERT INTO `sprt_user` (`user_id`, `user_email`, `user_lname`, `user_name`, `user_interest`, `user_nick`, `user_isadmin`, `user_avatar`) VALUES
-(1, 'TestA@test.com', 'TESTA', 'Testa', 'Tester en Admin', 'T3ST3R4', 1, NULL),
-(2, 'Test@test.com', 'TEST', 'Test', 'Tester', 'T3ST3R', 0, NULL);
+-- INSERT INTO `sprt_user` (`user_id`, `user_email`, `user_lname`, `user_name`, `user_interest`, `user_nick`, `user_isadmin`, `user_avatar`) VALUES
+-- (1, 'TestA@test.com', 'TESTA', 'Testa', 'Tester en Admin', 'T3ST3R4', 1, NULL),
+-- (2, 'Test@test.com', 'TEST', 'Test', 'Tester', 'T3ST3R', 0, NULL);
 
 -- --------------------------------------------------------
 
