@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `sprt_contestants` (
   `user_id` int(11) NOT NULL,
   `ev_id` int(11) NOT NULL,
   `cont_score` int(11) default NULL,
-  PRIMARY KEY  (`cont_id`)
+  PRIMARY KEY  (`ev_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
