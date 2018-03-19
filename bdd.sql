@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `sprt_event` (
   `ev_stamp` datetime NOT NULL,
   `ev_game` char(25) NOT NULL,
   `ev_modal` char(25) NOT NULL,
-  PRIMARY KEY  (`ev_id`),
+  PRIMARY KEY  (`ev_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
