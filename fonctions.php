@@ -306,7 +306,7 @@ function setFormStyle(){
         
         @media all and (max-width: 1300px) {
             #form {
-                width: 97vw;
+                width: 94vw;
             }
         }
         ";
@@ -540,13 +540,12 @@ function getUserById($id){
     return $result;
 }
 
-function addUser($mail, $nick, $passwd, $interest = null, $avatar = null, $admin = 0, $id = null, $lname = null, $name = null){
+function addUser($mail, $nick, $passwd, $interest = null, $avatar = null, $admin = 0, $id = null){
     $bdd = getBDD();
-    $request = $bdd -> prepare("INSERT INTO `sprt_user` (`user_id`, `user_email`, `user_lname`, `user_name`, `user_interest`, `user_nick`, `user_isadmin`, `user_avatar`, `user_passwd`) VALUES (:id, :mail, :lnom, :nom, :interest, :nick, :admin, :avatar, :passwd)");
+    //echo $mail.", ".$nick.", ".$passwd.", ".$interest.", ".$avatar.", ".$admin.", ".$id;
+    $request = $bdd -> prepare("INSERT INTO `sprt_user` (`user_id`, `user_email`, `user_interest`, `user_nick`, `user_isadmin`, `user_avatar`, `user_passwd`) VALUES (:id, :mail, :interest, :nick, :admin, :avatar, :passwd)");
     $request -> bindparam(":id", $id);
     $request -> bindparam(":mail", $mail);
-    $request -> bindparam(":lnom", $lname);
-    $request -> bindparam(":nom", $name);
     $request -> bindparam(":interest", $interest);
     $request -> bindparam(":nick", $nick);
     $request -> bindparam(":admin", $admin);
@@ -577,6 +576,25 @@ function getUserNickByMail($mail){
     $nick = $result[0]["user_nick"];
     //var_dump($nick);
     return $nick;
+}
+
+function addEventToBDD($titre, $game, $date, $mode, $min, $max, $creator, $ev_id = null){
+    $bdd = getBDD();
+    $request = $bdd -> prepare("INSERT INTO `sprt_event` ( `ev_id`, `ev_name`, `ev_creator`, `ev_cont_min`, `ev_cont_max`, `ev_stamp`, `ev_game`, `ev_modal`) VALUES (:ev_id, :titre, :creator, :mini, :maxi, :datetime, :game, :mode)");
+    $request -> bindParam(":ev_id", $ev_id);
+    $request -> bindParam(":titre", $titre);
+    $request -> bindParam(":creator", $creator);
+    $request -> bindParam(":mini", $min);
+    $request -> bindParam(":maxi", $max);
+    $request -> bindParam(":datetime", $date);
+    $request -> bindParam(":game", $game);
+    $request -> bindParam(":mode", $mode);
+    $request -> execute();
+    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    if (sizeof($result) > 0) {
+        return true;
+    }
+    return false;
 }
 
 ?>

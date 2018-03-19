@@ -33,12 +33,12 @@ include "fonctions.php";
     <body>
         <?php
         setMenu("Profil");
-        setPub();
         ?>
 
         <form id="form" method="post" action="index.php?connexion=TRUE">
             <?php
                 if (isset($_GET["inscription"])) {
+                    //var_dump($_POST);
                     $testUserMail = sizeof(getUserByMail($_POST["eMail"]));
                     $testUser = sizeof(getUserByPseudo($_POST["pseudo"]));
                     if ($testUserMail < 1) {
@@ -48,7 +48,15 @@ include "fonctions.php";
                                   </div>
                             ";
                             echo "<script src='js/inscription.js'></script>";
-                            addUser($_POST["eMail"], $_POST["pseudo"], sha1($_POST["passwd"]));
+                            $likes = "";
+                            foreach ($_POST as $key => $value){
+                                if ($value == "on"){
+                                    $likes .= $key.";";
+                                }
+                            }
+                            //echo $likes;
+                            //var_dump($_FILES);
+                            addUser($_POST["eMail"], $_POST["pseudo"], sha1($_POST["passwd"]), $likes);
                         }
                         else {
                             echo "<div class=\"alert alert-danger\" role=\"alert\">
@@ -78,5 +86,9 @@ include "fonctions.php";
 <!--            </div>-->
             <button type="submit" class="btn btn-warning" id="submit">Submit</button>
         </form>
+
+        <?php
+        setPub();
+        ?>
     </body>
 </html>

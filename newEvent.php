@@ -24,7 +24,7 @@ include "fonctions.php";
 
     <link rel="icon" type="image/png" href="images/pttlogo.png">
 
-    <title>SpearITournament - Event</title>
+    <title>SpearITournament - New event</title>
 
     <style>
     <?php
@@ -39,65 +39,64 @@ include "fonctions.php";
 <body>
 <?php
 setMenu("Event");
-  
-?>
 
-<form id="form" method="post" action="#">
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="Titre">Titre du Tournoi :</label>
-      <input type="text" class="form-control" id="Titre" placeholder="TournoiLand, Le Tournoi des geeks ...." name="title">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="">Jeux Proposés :</label>
-      <input type="text" class="form-control" id="inputPassword4" placeholder="ex: Couter Strike Global Offensive, League of Legends ...." name="game" required>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress">Date du Tournoi :</label>
-    <input type="date" class="form-control" id="inputAddress" placeholder="" name="date">
-  </div>
-  
-  <div class="form-group">
-    <label for="inputAddress2">Mode de jeu :</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Co-op, Solo, Contre la Montre, etc ..." name="modal">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">Nombre Maximum De Participants :</label>
-      <input type="number" class="form-control" id="inputCity" min="0" name="nbmax">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">Nombre Minimum De Participants :</label>
-      <input type="number" class="form-control" min="0" name="nbmin">
-    </div>
-  <button type="submit" class="btn btn-primary" style="height:3em; margin-top: 1.5em;">Valider Le Tournoi</button>
-</form>
+if (isset($_SESSION["id"])) {
+    echo '<form id = "form" method = "post" action = "index.php?newEvent=TRUE" >
+        <div class="form-row" >
+            <div class="form-group col-md-12" >
+                <label for="titre" > Titre du Tournoi :</label >
+                <input type = "text" class="form-control" id = "titre" placeholder = "TournoiLand, Le Tournoi des geeks ...." name = "titre" >
+            </div >
+        </div >
+    
+        <div class="form-row" >
+            <div class="form-group col-md-5" >
+                <label for="game" > Jeux Proposés :</label >
+                <input type = "text" class="form-control" id = "game" placeholder = "ex: Couter Strike Global Offensive, League of Legends ...." name = "game" required >
+            </div >
+            <div class="form-group col-md-5" >
+                <label for="inputAddress2" > Mode de jeu :</label >
+                <input type = "text" class="form-control" id = "mode" placeholder = "Co-op, Solo, Contre la Montre, etc ..." name = "modal" required >
+            </div >
+            <div class="form-check" style = "margin-top: 2.3em; margin-left: 2em;" >
+                <input type = "checkbox" class="form-check-input" id = "participate" >
+                <label class="form-check-label" for="participate" > Participer</label >
+            </div >
+        </div >
+    
+        <div class="form-row" >
+            <div class="form-group col-md-7" >
+                <label for="date" > Date du Tournoi :</label >
+                <input type = "date" class="form-control" id = "date" name = "date" required >
+            </div >
+            <div class="form-group col-md-5" >
+                <label for="time" > Heure :</label >
+                <input type = "time" class="form-control" id = "time" name = "time" required >
+            </div >
+        </div >
+    
+        <div class="form-row" >
+            <div class="form-group col-md-5" >
+                <label for="nbmin" > Nombre Minimum De Participants :</label >
+                <input type = "number" class="form-control" min = "0" max = "99" name = "nbmin" required >
+            </div >
+            <div class="form-group col-md-5" >
+                <label for="nbmax" > Nombre Maximum De Participants :</label >
+                <input type = "number" class="form-control" id = "nbmax" min = "0" max = "99" name = "nbmax" required >
+            </div >
+            <button type = "submit" class="btn btn-primary" style = "height:2.5em; margin-top: 1.9em;" > Valider Le Tournoi </button >
+        </div >
+    </form >';
+}
+else {
+    echo "<p id='form'>Vous devez vous <a href='connexion.php'><button class='btn btn-warning mr-sm-2' type ='button'><img src = 'images/profile.png' style = 'width: 2vw'> Connecter </button></a> pour créer un évennement</p>";
+}
 
-<?php
+
 setPub();
 
-if (isset($_POST["title"])){
-  $title=$_POST["title"];
-}
-if (isset($_POST["game"])){
-  $game=$_POST["game"];
-}
-if (isset($_POST["date"])){
-  $date=$_POST["date"];
-}
-if (isset($_POST["modal"])){
-  $modal=$_POST["modal"];
-}
-if (isset($_POST["nbmax"])){
-  $nbmax=$_POST["nbmax"];
-}
-if (isset($_POST["nbmin"])){
-  $nbmin=$_POST["nbmin"];
-}
-
-$bdd= getBDD();
-$newEvent=$bdd -> query ("INSERT INTO 'sprt_event'(ev_name,ev_creator,ev_contlist,ev_stamp,ev_cont_min,ev_cont_max,ev_game,ev_modal) VALUES($title,$game,$date,$modal,$nbmax,$nbmin) ")
+//$bdd= getBDD();
+//$newEvent=$bdd -> query ("INSERT INTO 'sprt_event'(ev_name,ev_creator,ev_contlist,ev_stamp,ev_cont_min,ev_cont_max,ev_game,ev_modal) VALUES($title,$game,$date,$modal,$nbmax,$nbmin) ")
 ?>
 </body>
 </html>

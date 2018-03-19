@@ -19,6 +19,18 @@ if (isset($_GET["connexion"])){
     }
 }
 
+if (isset($_GET["newEvent"])){
+    if ($_POST["titre"] == ""){
+        $_POST["titre"] = "Tournois";
+    }
+    $_POST["nbmin"] = intval($_POST["nbmin"]);
+    $_POST["nbmax"] = intval($_POST["nbmax"]);
+    //echo $_POST["nbmin"]."\n".$_POST["nbmax"];
+    echo $_POST["date"]." à ".$_POST["time"];
+    //sendEventToBdd($_POST["titre"],$_POST["game"],$_POST["date"]." ".$_POST["time"],$_POST["modal"],$_POST["nbmin"],$_POST["nbmax"], $_SESSION["id"]);
+
+}
+
 $date = "";
 if (isset($_GET["date"])){
     $date = $_GET["date"];
@@ -103,7 +115,7 @@ for ($i = 0; $i < sizeof($events); $i++){
 
         @media all and (max-width: 1250px) {
             .container-fluid {
-                max-width: 96.5vw;
+                max-width: 96.2vw;
                 float: none;
             }
         }
