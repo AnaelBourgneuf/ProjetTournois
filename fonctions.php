@@ -27,7 +27,7 @@ function setMenu($page){
 //                        <a class=\"dropdown-item\" href=\"#\">Réclamations</a>
 //                    </div>
 //                </li>
-                <li class=\"nav-item"; if ($page == "Apropos"){echo " active";} echo "\">
+                echo "<li class=\"nav-item"; if ($page == "Apropos"){echo " active";} echo "\">
                     <a class=\"nav-link\" href=\"aPropos.php\">À propos</a>
                 </li>
             </ul>
