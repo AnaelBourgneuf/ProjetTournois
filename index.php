@@ -55,6 +55,9 @@ for ($i = 0; $i < sizeof($events); $i++){
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="js/calendar.js"></script>
+
+    <link rel="icon" type="image/png" href="images/pttlogo.png">
+
     <title>SpearITournament - Accueil</title>
 
 

@@ -28,6 +28,8 @@ else {
 
         <script src="js/day.js"></script>
 
+        <link rel="icon" type="image/png" href="images/pttlogo.png">
+
         <title>SpearITournament - Day</title>
 
         <style>

@@ -5,28 +5,28 @@ function setMenu($page){
             <ul class=\"navbar-nav mr-auto\">
                 <li class=\"nav-item"; if ($page == "Accueil"){echo " active";} echo "\">
                     <a class=\"nav-link\" href=\"index.php\">Accueil</a>
-                </li>
-                <li class=\"nav-item"; if ($page == "Classements"){echo " active";} echo "\">
-                    <a class=\"nav-link\" href=\"#\">Classements</a>
-                </li>
-                <li class=\"nav-item dropdown"; if ($page == "New"){echo " active";} echo "\">
+                </li>";
+//                <li class=\"nav-item"; if ($page == "Classements"){echo " active";} echo "\">
+//                    <a class=\"nav-link\" href=\"#\">Classements</a>
+//                </li>
+                echo "<li class=\"nav-item dropdown"; if ($page == "New"){echo " active";} echo "\">
                     <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
                         Nouveau
                     </a>
                     <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">
-                        <a class=\"dropdown-item\" href=\"newEvent.php\">Tournois</a>
-                        <a class=\"dropdown-item\" href=\"#\">Ameliorations</a>
-                    </div>
-                </li>
-                <li class=\"nav-item dropdown"; if ($page == "Forum"){echo " active";} echo "\">
-                    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-                        Forum
-                    </a>
-                    <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">
-                        <a class=\"dropdown-item\" href=\"#\">Comment ça marche ?</a>
-                        <a class=\"dropdown-item\" href=\"#\">Réclamations</a>
-                    </div>
-                </li>
+                        <a class=\"dropdown-item\" href=\"newEvent.php\">Tournois</a>";
+//                        <a class=\"dropdown-item\" href=\"#\">Ameliorations</a>
+                    echo "</div>
+                </li>";
+//                <li class=\"nav-item dropdown"; if ($page == "Forum"){echo " active";} echo "\">
+//                    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+//                        Forum
+//                    </a>
+//                    <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">
+//                        <a class=\"dropdown-item\" href=\"#\">Comment ça marche ?</a>
+//                        <a class=\"dropdown-item\" href=\"#\">Réclamations</a>
+//                    </div>
+//                </li>
                 <li class=\"nav-item"; if ($page == "Apropos"){echo " active";} echo "\">
                     <a class=\"nav-link\" href=\"aPropos.php\">À propos</a>
                 </li>
