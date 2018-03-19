@@ -41,7 +41,8 @@ CREATE TABLE IF NOT EXISTS `sprt_chat` (
 --
 
 CREATE TABLE IF NOT EXISTS `sprt_contestants` (
-  `cont_id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) NOT NULL,
+  `ev_id` int(11) NOT NULL,
   `cont_score` int(11) default NULL,
   PRIMARY KEY  (`cont_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -60,14 +61,13 @@ CREATE TABLE IF NOT EXISTS `sprt_contestants` (
 CREATE TABLE IF NOT EXISTS `sprt_event` (
   `ev_id` int(11) NOT NULL auto_increment,
   `ev_name` char(25) default NULL,
-  `ev_creator` char(25) default NULL,
-  `ev_cont_list` char(25) default NULL,
+  `ev_creator` char(25) NOT NULL,
   `ev_cont_min` int(1) NOT NULL,
   `ev_cont_max` int(2) NOT NULL,
-  `ev_stamp` datetime default NULL,
-  `user_id` int(11) default NULL,
+  `ev_stamp` datetime NOT NULL,
+  `ev_game` char(25) NOT NULL,
+  `ev_modal` char(25) NOT NULL,
   PRIMARY KEY  (`ev_id`),
-  KEY `FK_sprt_event_user_id` (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
@@ -113,43 +113,6 @@ CREATE TABLE IF NOT EXISTS `sprt_forum_talk` (
 -- Contenu de la table `sprt_forum_talk`
 --
 
-
--- --------------------------------------------------------
-
---
--- Structure de la table `sprt_join`
---
-
-CREATE TABLE IF NOT EXISTS `sprt_join` (
-  `cont_id` int(11) NOT NULL,
-  `ev_id` int(11) NOT NULL,
-  PRIMARY KEY  (`cont_id`,`ev_id`),
-  KEY `FK_sprt_join_ev_id` (`ev_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `sprt_join`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `sprt_participate`
---
-
-CREATE TABLE IF NOT EXISTS `sprt_participate` (
-  `user_id` int(11) NOT NULL,
-  `cont_id` int(11) NOT NULL,
-  PRIMARY KEY  (`user_id`,`cont_id`),
-  KEY `FK_sprt_participate_cont_id` (`cont_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `sprt_participate`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -158,12 +121,11 @@ CREATE TABLE IF NOT EXISTS `sprt_participate` (
 
 CREATE TABLE IF NOT EXISTS `sprt_user` (
   `user_id` int(11) NOT NULL auto_increment,
-  `user_email` varchar(25) default NULL,
-  `user_lname` char(25) default NULL,
-  `user_name` char(25) default NULL,
-  `user_interest` char(25) default NULL,
-  `user_nick` char(25) default NULL,
-  `user_isadmin` tinyint(1) default NULL,
+  `user_email` varchar(25) NOT NULL,
+  `user_passwd` varchar(40) NOT NULL,
+  `user_interest` varchar(255) default NULL,
+  `user_nick` char(25) NOT NULL,
+  `user_isadmin` tinyint(1) default 0,
   `user_avatar` blob,
   PRIMARY KEY  (`user_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
