@@ -5,28 +5,28 @@ function setMenu($page){
             <ul class=\"navbar-nav mr-auto\">
                 <li class=\"nav-item"; if ($page == "Accueil"){echo " active";} echo "\">
                     <a class=\"nav-link\" href=\"index.php\">Accueil</a>
-                </li>
-                <li class=\"nav-item"; if ($page == "Classements"){echo " active";} echo "\">
-                    <a class=\"nav-link\" href=\"#\">Classements</a>
-                </li>
-                <li class=\"nav-item dropdown"; if ($page == "New"){echo " active";} echo "\">
+                </li>";
+//                <li class=\"nav-item"; if ($page == "Classements"){echo " active";} echo "\">
+//                    <a class=\"nav-link\" href=\"#\">Classements</a>
+//                </li>
+                echo "<li class=\"nav-item dropdown"; if ($page == "New"){echo " active";} echo "\">
                     <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
                         Nouveau
                     </a>
                     <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">
-                        <a class=\"dropdown-item\" href=\"newEvent.php\">Tournois</a>
-                        <a class=\"dropdown-item\" href=\"#\">Ameliorations</a>
-                    </div>
-                </li>
-                <li class=\"nav-item dropdown"; if ($page == "Forum"){echo " active";} echo "\">
-                    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-                        Forum
-                    </a>
-                    <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">
-                        <a class=\"dropdown-item\" href=\"#\">Comment ça marche ?</a>
-                        <a class=\"dropdown-item\" href=\"#\">Réclamations</a>
-                    </div>
-                </li>
+                        <a class=\"dropdown-item\" href=\"newEvent.php\">Tournois</a>";
+//                        <a class=\"dropdown-item\" href=\"#\">Ameliorations</a>
+                    echo "</div>
+                </li>";
+//                <li class=\"nav-item dropdown"; if ($page == "Forum"){echo " active";} echo "\">
+//                    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+//                        Forum
+//                    </a>
+//                    <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdownMenuLink\">
+//                        <a class=\"dropdown-item\" href=\"#\">Comment ça marche ?</a>
+//                        <a class=\"dropdown-item\" href=\"#\">Réclamations</a>
+//                    </div>
+//                </li>
                 <li class=\"nav-item"; if ($page == "Apropos"){echo " active";} echo "\">
                     <a class=\"nav-link\" href=\"aPropos.php\">À propos</a>
                 </li>
@@ -247,7 +247,7 @@ function setPub(){
 
 function setPubStyle(){
     echo "
-        .card {
+        #pub {
             float: right;
             position : fixed;
             top : 100px;
@@ -264,7 +264,7 @@ function setPubStyle(){
         }
         
         @media all and (max-width: 1300px) {
-            .card {
+            #pub {
                 float: none;
                 position : relative;
                 top : 0px;
@@ -273,9 +273,6 @@ function setPubStyle(){
                 flex-direction: column;
                 align-items: center;
                 margin: 10px;
-            }
-            
-            #pub {
                 margin-top: 5px;
             }
     
@@ -475,7 +472,7 @@ function getEventsInBDD($date) {
     $date = getDateToSend($date);
     //var_dump($date);
     $bdd = getBDD();
-    $request = $bdd -> prepare("SELECT ev_name, ev_creator FROM sprt_event WHERE ev_stamp LIKE \"".$date."%\" ORDER BY ev_stamp");
+    $request = $bdd -> prepare("SELECT ev_name, ev_creator, ev_id FROM sprt_event WHERE ev_stamp LIKE \"".$date."%\" ORDER BY ev_stamp");
     $request -> execute();
     $result = $request -> fetchAll(PDO::FETCH_ASSOC);
     return $result;
@@ -485,7 +482,23 @@ function getEventsOfTheMonthInBDD($date) {
     $date = getMonthToSend($date);
     //var_dump($date);
     $bdd = getBDD();
-    $request = $bdd -> prepare("SELECT * FROM sprt_event WHERE ev_stamp LIKE \"%".$date."%\" ORDER BY ev_stamp");
+    $request = $bdd -> prepare("SELECT * FROM `sprt_event` WHERE ev_stamp LIKE \"%".$date."%\" ORDER BY ev_stamp");
+    $request -> execute();
+    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function getEventById($id){
+    $bdd = getBDD();
+    $request = $bdd -> prepare("SELECT * FROM `sprt_event` WHERE ev_id = ".$id);
+    $request -> execute();
+    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function getEventContestantsId($id){
+    $bdd = getBDD();
+    $request = $bdd -> prepare("SELECT cont_id, cont_score FROM `sprt_contestants` WHERE ev_id = \"".$id."\"");
     $request -> execute();
     $result = $request -> fetchAll(PDO::FETCH_ASSOC);
     return $result;
@@ -513,6 +526,15 @@ function getUserByPseudo($pseudo){
     $bdd = getBDD();
     //var_dump($mail);
     $request = $bdd -> prepare("SELECT user_email FROM `sprt_user` WHERE user_nick = \"".$pseudo."\"");
+    $request ->execute();
+    $result = $request->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function getUserById($id){
+    $bdd = getBDD();
+    //var_dump($mail);
+    $request = $bdd -> prepare("SELECT user_email FROM `sprt_user` WHERE user_id = \"".$id."\"");
     $request ->execute();
     $result = $request->fetchAll(PDO::FETCH_ASSOC);
     return $result;

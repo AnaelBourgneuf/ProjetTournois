@@ -22,6 +22,8 @@ include "fonctions.php";
     <script src="https://cdn.jsdelivr.net/npm/gijgo@1.8.1/combined/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://cdn.jsdelivr.net/npm/gijgo@1.8.1/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
+    <link rel="icon" type="image/png" href="images/pttlogo.png">
+
     <title>SpearITournament - Event</title>
 
     <style>
@@ -40,7 +42,7 @@ setMenu("Event");
   
 ?>
 
-<form id="form" method="post" action="newEvent.php">
+<form id="form" method="post" action="#">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="Titre">Titre du Tournoi :</label>
@@ -48,7 +50,7 @@ setMenu("Event");
     </div>
     <div class="form-group col-md-6">
       <label for="">Jeux Proposés :</label>
-      <input type="text" class="form-control" id="inputPassword4" placeholder="ex: Couter Strike Global Offensive, League of Legends ...." name="game">
+      <input type="text" class="form-control" id="inputPassword4" placeholder="ex: Couter Strike Global Offensive, League of Legends ...." name="game" required>
     </div>
   </div>
   <div class="form-group">

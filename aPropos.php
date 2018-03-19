@@ -17,6 +17,8 @@ include "fonctions.php";
     <!-- Material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <link rel="icon" type="image/png" href="images/pttlogo.png">
+
     <title>SpearITournament - À propos</title>
 </head>
 <body>

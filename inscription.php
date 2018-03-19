@@ -16,6 +16,8 @@ include "fonctions.php";
     <!-- Material icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <link rel="icon" type="image/png" href="images/pttlogo.png">
+
     <title>SpearITournament - Inscription</title>
 
     <style>
@@ -133,7 +135,7 @@ setMenu("Inscription");
                 return false;
             }
             if (pseudo.indexOf("<") != -1){
-                alert("stop FDP !");
+                alert("Stop FDP !");
                 return false
             }
             return true;
