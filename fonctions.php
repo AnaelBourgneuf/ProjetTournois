@@ -597,12 +597,12 @@ function addEventToBDD($titre, $game, $date, $mode, $min, $max, $creator, $ev_id
     return false;
 }
 
-function getEventId($titre, $game, $date, $mode, $min, $max, $creator){
+function getEventId(){
     $bdd = getBDD();
-    $request = $bdd -> prepare("SELECT  FROM `sprt_event` WHERE `ev_name` = ".$titre." AND `ev_creator` = ".$creator." AND `ev_cont_min` = ".$min." AND `ev_cont_max` = ".$max." AND `ev_game` = ".$game." AND `ev_modal` = ".$mode." AND `ev_stamp` LIKE ".$date."%");
+    $request = $bdd -> prepare("SELECT * FROM sprt_event");
     $request -> execute();
     $result = $request -> fetchAll(PDO::FETCH_ASSOC);
-    var_dump($result);
+    //var_dump($result);
     return $result;
 }
 
