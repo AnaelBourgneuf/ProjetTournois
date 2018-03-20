@@ -67,7 +67,7 @@ setMenu("Inscription");
     <div class="row" style="margin: 0px 0px 15px 0px;">
         <div class="custom-file col">
             <label class="custom-file-label" for="avatar">Choisir Avatar</label>
-            <input type="hidden" name="MAX_FILE_SIZE" value="300000">
+            <input type="hidden" name="MAX_FILE_SIZE" value="100000000">
             <input name="avatar" type="file" class="custom-file-input" id="avatar">
         </div>
     </div>
