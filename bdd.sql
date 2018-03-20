@@ -13,7 +13,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Base de données: `spearitournament`
 --
 
-CREATE DATABASE IF NOT EXISTS `spearitournament`
+CREATE DATABASE IF NOT EXISTS `spearitournament`;
 USE spearitournament;
 
 -- --------------------------------------------------------
