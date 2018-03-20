@@ -597,4 +597,26 @@ function addEventToBDD($titre, $game, $date, $mode, $min, $max, $creator, $ev_id
     return false;
 }
 
+function getEventId($titre, $game, $date, $mode, $min, $max, $creator){
+    $bdd = getBDD();
+    $request = $bdd -> prepare("SELECT  FROM `sprt_event` WHERE `ev_name` = ".$titre." AND `ev_creator` = ".$creator." AND `ev_cont_min` = ".$min." AND `ev_cont_max` = ".$max." AND `ev_game` = ".$game." AND `ev_modal` = ".$mode." AND `ev_stamp` LIKE ".$date."%");
+    $request -> execute();
+    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    var_dump($result);
+    return $result;
+}
+
+function addContestant($pseudo, $eventId){
+    $bdd = getBDD();
+    $request = $bdd -> prepare("INSERT INTO `sprt_contestants` (`user_pseudo`, `ev_id`) VALUES (:pseudo, :ev_id)");
+    $request -> bindParam(":pseudo", $pseudo);
+    $request -> bindParam(":ev_id", $eventId);
+    $request -> execute();
+    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    if (sizeof($result) > 0) {
+        return true;
+    }
+    return false;
+}
+
 ?>

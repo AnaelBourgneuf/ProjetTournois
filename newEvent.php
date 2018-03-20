@@ -59,7 +59,7 @@ if (isset($_SESSION["id"])) {
                 <input type = "text" class="form-control" id = "mode" placeholder = "Co-op, Solo, Contre la Montre, etc ..." name = "modal" required >
             </div >
             <div class="form-check" style = "margin-top: 2.3em; margin-left: 2em;" >
-                <input type = "checkbox" class="form-check-input" id = "participate" >
+                <input type = "checkbox" class="form-check-input" id="participate" name="participate">
                 <label class="form-check-label" for="participate" > Participer</label >
             </div >
         </div >

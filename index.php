@@ -27,8 +27,16 @@ if (isset($_GET["newEvent"])){
     $_POST["nbmax"] = intval($_POST["nbmax"]);
     //echo $_POST["nbmin"]."\n".$_POST["nbmax"];
     echo $_POST["date"]." à ".$_POST["time"];
-    //sendEventToBdd($_POST["titre"],$_POST["game"],$_POST["date"]." ".$_POST["time"],$_POST["modal"],$_POST["nbmin"],$_POST["nbmax"], $_SESSION["id"]);
-
+    sendEventToBdd($_POST["titre"],$_POST["game"],$_POST["date"]." ".$_POST["time"],$_POST["modal"],$_POST["nbmin"],$_POST["nbmax"], $_SESSION["id"]);
+    if (isset($_POST["participate"])){
+        $ev_id = getEventId($_POST["titre"],$_POST["game"],$_POST["date"]." ".$_POST["time"],$_POST["modal"],$_POST["nbmin"],$_POST["nbmax"], $_SESSION["id"]);
+        if ($ev_id == null){
+            echo "erreur de recuperation de l'evennement tout juste créé";
+        }
+        else {
+            addContestant($_SESSION["id"], $ev_id);
+        }
+    }
 }
 
 $date = "";
