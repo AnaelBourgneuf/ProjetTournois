@@ -36,7 +36,7 @@ include "fonctions.php";
 setMenu("Inscription");
 ?>
 
-<form id="form" method="post" action="connexion.php?inscription=TRUE">
+<form id="form" method="post" action="connexion.php?inscription=TRUE" enctype="multipart/form-data">
     <div class="row">
         <div class="form-group col imput-group">
             <label for="pseudo">Pseudo</label>
@@ -67,6 +67,7 @@ setMenu("Inscription");
     <div class="row" style="margin: 0px 0px 15px 0px;">
         <div class="custom-file col">
             <label class="custom-file-label" for="avatar">Choisir Avatar</label>
+            <input type="hidden" name="MAX_FILE_SIZE" value="100000">
             <input name="avatar" type="file" class="custom-file-input" id="avatar">
         </div>
     </div>
