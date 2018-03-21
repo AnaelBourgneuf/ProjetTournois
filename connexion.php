@@ -54,9 +54,51 @@ include "fonctions.php";
                                     $likes .= $key.";";
                                 }
                             }
+                            $target_dir = "uploads/";
+                            $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+                            $uploadOk = 1;
+                            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+                            $target_file = $target_dir.$_POST["pseudo"].".".$imageFileType;
+                            // Check if image file is a actual image or fake image
+                            $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+                            if($check !== false) {
+                                //echo "File is an image - " . $check["mime"] . ".";
+                                $uploadOk = 1;
+                            } else {
+                                echo "<div class=\"alert alert-danger\" role=\"alert\">
+                                              Désolé, une erreur s'est produite, <a href='inscription.php'>réessayez</a>.
+                                          </div>";
+                                //$uploadOk = 0;
+                            }
+                            // Check file size
+                            if ($_FILES["avatar"]["size"] > 500000) {
+                                echo "<div class=\"alert alert-danger\" role=\"alert\">
+                                          Désolé, l'image avatar est trop lourde, <a href='inscription.php'>réessayez</a>.
+                                      </div>";
+                                $uploadOk = 0;
+                            }
+                            // Allow certain file formats
+                            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                                && $imageFileType != "gif" ) {
+                                echo "<div class=\"alert alert-danger\" role=\"alert\">
+                                          Désolé, seuls JPG, JPEG, PNG et GIF sont autorisés, <a href='inscription.php'>réessayez</a>.
+                                      </div>";
+                                $uploadOk = 0;
+                            }
+                            // Check if $uploadOk is set to 0 by an error
+                            if ($uploadOk == 0) {
+                                echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+                            } else {
+                                if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
+                                    addUser($_POST["eMail"], $_POST["pseudo"], sha1($_POST["passwd"]), $likes, $_POST["pseudo"].".".$imageFileType);
+                                } else {
+                                    echo "<div class=\"alert alert-danger\" role=\"alert\">
+                                              Désolé, une erreur s'est produite, <a href='inscription.php'>réessayez</a>.
+                                          </div>";
+                                }
+                            }
                             //echo $likes;
-                            //var_dump($_FILES);
-                            addUser($_POST["eMail"], $_POST["pseudo"], sha1($_POST["passwd"]), $likes);
                         }
                         else {
                             echo "<div class=\"alert alert-danger\" role=\"alert\">
@@ -70,6 +112,7 @@ include "fonctions.php";
                               </div>";
                     }
                 }
+
             ?>
             <div class="form-group">
                 <label for="mail">Email address</label>
