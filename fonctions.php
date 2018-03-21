@@ -520,6 +520,7 @@ function getEventContestantsId($id){
     $request = $bdd -> prepare("SELECT user_pseudo, cont_score FROM `sprt_contestants` WHERE ev_id = \"".$id."\"");
     $request -> execute();
     $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    var_dump($result);
     return $result;
 }
 
