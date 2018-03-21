@@ -53,7 +53,7 @@ function setMenu($page){
                         else {
                             echo "connexion.php";
                         }
-                        echo "'><button class=\"btn btn-"; if ($page != "Profil"){ echo"outline-";} echo "warning mr-sm-2\" type=\"button\"><img src=\"images/profile.png\" style=\"width: 2vw\">";
+                        echo "'><button class=\"btn btn-"; if ($page != "Profil"){ echo"outline-";} echo "warning mr-sm-2\" type=\"button\"><img src=\"uploads/".getProfileImageName()."\" style=\"width: 2vw\">";
 
                         if (isset($_SESSION["id"])) {
                             echo $_SESSION["id"];
@@ -211,7 +211,7 @@ function setAsside(){
             </div>
             <img class=\"card-img-top\" src=\"images/pearjeux.png\" alt=\"Card image cap\">
             <div class=\"card-body\">
-                <p class=\"card-text\">De nombreux jeux disponibles sur <a href=\"#\">pearjeux.fr</a></p>
+                <p class=\"card-text\">De nombreux jeux disponibles sur <a href=\"http://robin.ctexdev.net/team4/pearjeu/accueil.php\">pearjeux.fr</a></p>
             </div>
         </div>
 
@@ -240,7 +240,7 @@ function setPub(){
             </div>
             <img class=\"card-img-top\" src=\"images/pearjeux.png\" alt=\"Card image cap\">
             <div class=\"card-body\">
-                <p class=\"card-text\">De nombreux jeux disponibles sur <a href=\"#\">pearjeux.fr</a></p>
+                <p class=\"card-text\">De nombreux jeux disponibles sur <a href=\"http://robin.ctexdev.net/team4/pearjeu/accueil.php\">pearjeux.fr</a></p>
             </div>
         </div>";
 }
@@ -617,6 +617,23 @@ function addContestant($pseudo, $eventId){
         return true;
     }
     return false;
+}
+
+function getProfileImageName() {
+    if (isset($_SESSION["id"])) {
+        $bdd = getBDD();
+        $request = $bdd->prepare("SELECT user_avatar FROM sprt_user WHERE user_pseudo = \"".$_SESSION["id"]."\"");
+        $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+        if (is_null($result[0]["user_avatar"])){
+            return "profil.png";
+        }
+        else {
+            return $result[0]["user_avatar"];
+        }
+    }
+    else {
+        return "profil.png";
+    }
 }
 
 ?>

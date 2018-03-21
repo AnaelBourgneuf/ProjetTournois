@@ -62,26 +62,27 @@ include "fonctions.php";
                             // Check if image file is a actual image or fake image
                             $check = getimagesize($_FILES["avatar"]["tmp_name"]);
                             if($check !== false) {
-                                echo "File is an image - " . $check["mime"] . ".";
+                                //echo "File is an image - " . $check["mime"] . ".";
                                 $uploadOk = 1;
                             } else {
-                                echo "File is not an image.";
-                                $uploadOk = 0;
-                            }
-                            // Check if file already exists
-                            if (file_exists($target_file)) {
-                                echo "Sorry, file already exists.";
-                                $uploadOk = 0;
+                                echo "<div class=\"alert alert-danger\" role=\"alert\">
+                                              Désolé, une erreur s'est produite, <a href='inscription.php'>réessayez</a>.
+                                          </div>";
+                                //$uploadOk = 0;
                             }
                             // Check file size
                             if ($_FILES["avatar"]["size"] > 500000) {
-                                echo "Sorry, your file is too large.";
+                                echo "<div class=\"alert alert-danger\" role=\"alert\">
+                                          Désolé, l'image avatar est trop lourde, <a href='inscription.php'>réessayez</a>.
+                                      </div>";
                                 $uploadOk = 0;
                             }
                             // Allow certain file formats
                             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
                                 && $imageFileType != "gif" ) {
-                                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                                echo "<div class=\"alert alert-danger\" role=\"alert\">
+                                          Désolé, seuls JPG, JPEG, PNG et GIF sont autorisés, <a href='inscription.php'>réessayez</a>.
+                                      </div>";
                                 $uploadOk = 0;
                             }
                             // Check if $uploadOk is set to 0 by an error
@@ -90,13 +91,14 @@ include "fonctions.php";
 // if everything is ok, try to upload file
                             } else {
                                 if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
-                                    echo "The file ". basename( $_FILES["avatar"]["name"]). " has been uploaded.";
+                                    addUser($_POST["eMail"], $_POST["pseudo"], sha1($_POST["passwd"]), $likes, $_POST["pseudo"].".".$imageFileType);
                                 } else {
-                                    echo "Sorry, there was an error uploading your file.";
+                                    echo "<div class=\"alert alert-danger\" role=\"alert\">
+                                              Désolé, une erreur s'est produite, <a href='inscription.php'>réessayez</a>.
+                                          </div>";
                                 }
                             }
                             //echo $likes;
-                            addUser($_POST["eMail"], $_POST["pseudo"], sha1($_POST["passwd"]), $likes, $_POST["pseudo"].".".$imageFileType);
                         }
                         else {
                             echo "<div class=\"alert alert-danger\" role=\"alert\">
