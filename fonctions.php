@@ -203,9 +203,10 @@ function setAssideStyle(){
 }
 
 
-function setAsside(){
-    echo "<div id=\"rightbottom\">
-        <div class=\"card\" id=\"pub\">
+function setAsside($page = "index"){
+    echo "<div id=\"rightbottom\">";
+    if ($page == "index") {
+        echo "<div class=\"card\" id=\"pub\">
             <div class=\"card-body\">
                 <h3 class=\"card-text\" style=\"text-align: center; font-weight: bold;\">Pear pub</h3>
             </div>
@@ -213,13 +214,31 @@ function setAsside(){
             <div class=\"card-body\">
                 <p class=\"card-text\">De nombreux jeux disponibles sur <a href=\"http://robin.ctexdev.net/team4/pearjeu/accueil.php\">pearjeux.fr</a></p>
             </div>
-        </div>
+        </div>";
+    };
 
-        <div id=\"boutons\">
-            <a href=\"newEvent.php\"><button type=\"button\" class=\"btn btn-primary btn-lg btn-block\">Nouvel évènement</button></a>
-        </div>
+        echo "<div id=\"boutons\">";
+            if ($page == "profil"){
+                echo "<a href=\"newEvent.php\"><button type=\"button\" class=\"btn btn-danger btn-lg btn-block\">Logout</button></a>";
+            }
+            echo "<a href=\"newEvent.php\"><button type=\"button\" class=\"btn btn-primary btn-lg btn-block\">Nouvel évènement</button></a>";
 
-        <div id=\"suggest\">
+        echo "</div>";
+
+    if ($page == "profil") {
+        echo "<div class=\"card\" id=\"pub\">
+            <div class=\"card-body\">
+                <h3 class=\"card-text\" style=\"text-align: center; font-weight: bold;\">Pear pub</h3>
+            </div>
+            <img class=\"card-img-top\" src=\"images/pearjeux.png\" alt=\"Card image cap\">
+            <div class=\"card-body\">
+                <p class=\"card-text\">De nombreux jeux disponibles sur <a href=\"http://robin.ctexdev.net/team4/pearjeu/accueil.php\">pearjeux.fr</a></p>
+            </div>
+        </div>";
+    };
+
+
+        echo "<div id=\"suggest\">
             <div class=\"card\">
                 <div class=\"card-body\">
                     <h3 class=\"card-text\" style=\"text-align: center; font-weight: bold;\">Tournois CS GO</h3>
@@ -498,9 +517,10 @@ function getEventById($id){
 
 function getEventContestantsId($id){
     $bdd = getBDD();
-    $request = $bdd -> prepare("SELECT cont_id, cont_score FROM `sprt_contestants` WHERE ev_id = \"".$id."\"");
+    $request = $bdd -> prepare("SELECT user_pseudo, cont_score FROM `sprt_contestants` WHERE ev_id = \"".$id."\"");
     $request -> execute();
     $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    var_dump($result);
     return $result;
 }
 
@@ -622,8 +642,10 @@ function addContestant($pseudo, $eventId){
 function getProfileImageName() {
     if (isset($_SESSION["id"])) {
         $bdd = getBDD();
-        $request = $bdd->prepare("SELECT user_avatar FROM sprt_user WHERE user_pseudo = \"".$_SESSION["id"]."\"");
+        $request = $bdd->prepare("SELECT user_avatar FROM sprt_user WHERE user_nick = \"".$_SESSION["id"]."\"");
+        $request -> execute();
         $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+        //var_dump($result);
         if (is_null($result[0]["user_avatar"])){
             return "profil.png";
         }
@@ -633,6 +655,20 @@ function getProfileImageName() {
     }
     else {
         return "profil.png";
+    }
+}
+
+function getProfileImageNameById($id) {
+    $bdd = getBDD();
+    $request = $bdd->prepare("SELECT user_avatar FROM sprt_user WHERE user_id = \"".$id."\"");
+    $request -> execute();
+    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    //var_dump($result);
+    if (is_null($result[0]["user_avatar"])){
+        return "profil.png";
+    }
+    else {
+        return $result[0]["user_avatar"];
     }
 }
 
