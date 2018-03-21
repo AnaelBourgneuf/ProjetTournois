@@ -7,6 +7,7 @@ $name = null;
 $creator = null;
 $time = null;
 $game=null;
+$nbmax=null;
 if (isset($_GET["id"])){
     $event = getEventById($_GET["id"]);
     $contestants = getEventContestantsId($_GET["id"]);
@@ -14,6 +15,7 @@ if (isset($_GET["id"])){
     $creator = $event[0]["ev_creator"];
     $time = $event[0]["ev_stamp"];
     $game = $event[0]["ev_game"];
+    $nbmax=$event[0]["ev_cont_max"];
 }
 ?>
 
@@ -59,30 +61,34 @@ setMenu("");
 
 if (isset($_GET["id"])){
     if (isset($_SESSION["id"])){
-        //var_dump($event);
+        //var_dump($time);
         echo '<div class="card-columns" id="form">
         <div class="card">
             ';//<img class="card-img-top" src="..." alt="Card image cap">
             echo '<div class="card-body">
                 <h5 class="card-title">'.$game.'</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text">est un jeu vidéo de type arène de bataille en ligne (MOBA) gratuit développé et édité par Rito Gamezzz</p>
             </div>
         </div>
         <div class="card p-3">
             <blockquote class="blockquote mb-0 card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <p>Mode de jeu :</p>
                 <footer class="blockquote-footer">
                     <small class="text-muted">
-                        Someone famous in <cite title="Source Title">Source Title</cite>
+                        Co-op en équipe. <cite title="Source Title"></cite>
                     </small>
                 </footer>
             </blockquote>
         </div>
         <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            ';//<img class="card-img-top" src="..." alt="Card image cap">
+        echo '<div class="card-body">
+                <h5 class="card-title">Liste des Participants :</h5>
+                <p class="card-text">';
+                for ($i=0;$i<sizeof($contestants);$i++){
+                    echo $contestants[$i]["cont_id"];
+                }
+                echo '</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
@@ -104,22 +110,20 @@ if (isset($_GET["id"])){
             </div>
         </div>
         <div class="card">
-            <img class="card-img" src="..." alt="Card image">
-        </div>
+            ';//<img class="card-img" src="..." alt="Card image">
+    echo '</div>
         <div class="card p-3 text-right">
             <blockquote class="blockquote mb-0">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <p>Nombre maximum de participants : </p>
                 <footer class="blockquote-footer">
-                    <small class="text-muted">
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                    </small>
+                        '.$nbmax.'
                 </footer>
             </blockquote>
         </div>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                <h5 class="card-title">Date/heure :</h5>
+                <p class="card-text">'.$time.'</br></br>Année/Mois/Jour      Heure</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
