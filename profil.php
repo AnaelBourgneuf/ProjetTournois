@@ -24,7 +24,7 @@ include "fonctions.php";
         <style>
             <?php
             setMenuStyle();
-            setPubStyle();
+            setAssideStyle();
             setFormStyle();
             ?>
 
@@ -32,6 +32,15 @@ include "fonctions.php";
                 float: right;
                 margin: 15px;
                 margin-right: 400px;
+            }
+
+            #pub {
+                margin-top: 0px;
+            }
+
+            #boutons button {
+                margin-top: 0px;
+                margin-bottom: 1.5vh;
             }
         </style>
     </head>
@@ -41,9 +50,12 @@ include "fonctions.php";
 
         if (isset($_SESSION["id"])){
             if (isset($_GET["id"])){
-                echo $_SESSION["id"]." - ".$_GET["id"];
+
                 if ($_SESSION["id"] == $_GET["id"]){
-                    echo "<a href=\"index.php?disconnect=TRUE\" id=\"disconnect\"><button type=\"button\" class=\"btn btn-lg btn-outline-danger\">Disconnect</button></a>";
+                    setAsside("profil");
+                }
+                else {
+                    setAsside();
                 }
             }
             else {
@@ -54,7 +66,6 @@ include "fonctions.php";
             echo "<p id='form'>Vous devez vous <a href='connexion.php'><button class='btn btn-warning mr-sm-2' type ='button'><img src = 'images/profile.png' style = 'width: 2vw'> Connecter </button></a> pour accéder a un profil d'utilisteur</p>";
         }
 
-        setPub();
         ?>
 
     </body>
