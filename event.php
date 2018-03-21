@@ -86,7 +86,7 @@ if (isset($_GET["id"])){
                 <h5 class="card-title">Liste des Participants :</h5>
                 <p class="card-text">';
                 for ($i=0;$i<sizeof($contestants);$i++){
-                    echo $contestants[$i]["cont_id"];
+                    echo $contestants[$i]["user_pseudo"];
                 }
                 echo '</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -104,15 +104,15 @@ if (isset($_GET["id"])){
         </div>
         <div class="card text-center">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <h5 class="card-title">Résultats :</h5>
+                <p class="card-text">BLABLABLA</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
-        <div class="card">
-            ';//<img class="card-img" src="..." alt="Card image">
-    echo '</div>
-        <div class="card p-3 text-right">
+        ';//<div class="card">
+            ;//<img class="card-img" src="..." alt="Card image">
+     //</div>
+     echo '<div class="card p-3 text-right">
             <blockquote class="blockquote mb-0">
                 <p>Nombre maximum de participants : </p>
                 <footer class="blockquote-footer">
