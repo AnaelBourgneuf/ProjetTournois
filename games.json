@@ -1,0 +1,27 @@
+{
+    "battleblock": ["BattleBlock Theater", "BattleBlock Theater est un jeu de plates-formes comique développé par The Behemoth et publié par Microsoft Studios"],
+    "brawlhalla": ["Brawlhalla"," Brawlhalla est un jeu de combat de plate-forme en 2D. Choisissez une Légende, et devenez une Légende. Les plus grands combattants s'affrontent dans une bataille éternelle. Chaque rencontre est épique et vous permet de dévoiler toutes vos capacités"],
+    "chivalry" : ["Chivalry: Medieval Warfare","Chivalry: Medieval Warfare est un jeu vidéo indépendant d'action multijoueur avec une vue à la première personne développé par Torn Banner Studios avec le moteur de jeu Unreal Engine"],
+    "csgo": ["Counter-Strike: Global Offensive","Counter-Strike: Global Offensive est un jeu de tir à la première personne multijoueur en ligne basé sur le jeu d'équipe développé par Valve Corporation"],
+    "css": ["Counter-Strike: Source","Counter-Strike: Source, généralement abrégé par CS:S ou CSS, est un jeu vidéo est un jeu de tir à la première personne développé par Valve Software. Il s'agit d'une évolution de Counter-Strike utilisant le moteur Source"],
+    "garrysmod": ["Garry's Mod","Garry’s Mod (GMod en abrégé) est un mod de construction Half-Life 2, créé par Garry Newman en décembre 2004. Il s'agit d'un jeu de type « sandbox » (« bac à sable » en français), sans but particulier, où le joueur est libre de créer et de manipuler n'importe quel objet, et de faire de nombreuses expériences, exploitant entièrement le moteur Source"],
+    "gearup":["Gear Up","Gear Up est un jeu multijoueurs où vous construisez des tanks et vous battez avec des adversaires en ligne"],
+    "gta5":["Grand Theft Auto V","Grand Theft Auto V est un jeu vidéo d'action-aventure, développé par Rockstar North et édité par Rockstar Games"],
+    "goio":["Guns of Icarus Online","Guns of Icarus Online est un jeu vidéo multijoueur de tir en vue à la première personne prenant place dans un univers steampunk"],
+    "killingfloor":["Killing Floor","Killing Floor est un jeu vidéo de tir à la première personne développé par Tripwire Interactive"],
+    "killingfloor2": ["Killing Floor 2", "Killing Floor 2 est un jeu vidéo mêlant tir à la première personne et survival horror développé et édité par Tripwire Interactive"],
+    "l4d":["Left 4 Dead","Left 4 Dead, aussi abrégé L4D, est un jeu vidéo de tir à la première personne sorti en novembre 2008 développé par Turtle Rock Studios"],
+    "l4d2":["Left 4 Dead 2","Left 4 Dead 2 est un jeu de tir à la première personne développé par Valve et sorti en novembre 2009"],
+    "legostarwars":["Lego Star Wars","Lego Star Wars, le jeu vidéo est un jeu vidéo d'action-aventure se déroulant dans l'univers de Star Wars, développé par Traveller's Tales"],
+    "portal":["Portal","Portal est un jeu vidéo de réflexion et d'action en vue à la première personne développé par Valve Corporation"],
+    "portal2":["Portal 2","Portal 2 est un jeu vidéo de plates-formes et de réflexion en vue subjective développé et édité par Valve"],
+    "rocketleague":["Rocket League","Rocket League est un jeu vidéo de sport développé par Psyonix"],
+    "rust":["Rust","Rust est un jeu vidéo d'aventure et de survie multijoueur créé par Facepunch Studios"],
+    "speedrunners":["SpeedRunners","SpeedRunners est un jeu vidéo de plates-formes développé par DoubleDutch Games et édité par TinyBuild Games, sorti en 2016"],
+    "sc2":["StarCraft 2","StarCraft 2: Wings of Liberty est un jeu vidéo de stratégie en temps réel développé par Blizzard Entertainment"],
+    "lol":["League of Legends","League of Legends est un jeu vidéo de type arène de bataille en ligne gratuit développé et édité par Riot Games"],
+    "dota2":["Dota 2","Dota 2 est un jeu vidéo de type arène de bataille en ligne multijoueur développé et édité par Valve Corporation avec l'aide de certains des créateurs du jeu d'origin"],
+    "smite":["Smite","Smite est un jeu vidéo d'arène de bataille en ligne multijoueur en vue à la troisième personne où les joueurs incarnent des divinités"],
+    "fortnite":["Fortnite","Fortnite est un jeu vidéo de survie et de construction en coopération développé par People Can Fly et Epic Games"]
+
+}
