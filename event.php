@@ -1,6 +1,17 @@
 <?php
 session_start();
 include "fonctions.php";
+
+
+
+if (isset($_GET["join"])){
+    addContestant($_SESSION["id"], $_GET["id"]);
+}
+
+if (isset($_GET["quit"])){
+    deleteContestant($_SESSION["id"], $_GET["id"]);
+}
+
 $event = null;
 $contestants = null;
 $name = null;
@@ -35,7 +46,7 @@ if (isset($_GET["id"])){
 
     <link rel="icon" type="image/png" href="images/pttlogo.png">
 
-    <title>SpearITournament - new Event</title>
+    <title>SpearITournament - Event</title>
 
     <style>
         <?php
