@@ -168,7 +168,7 @@ function setAssideStyle(){
 
         
         
-        @media all and (max-width: 1250px) {
+        @media all and (max-width: 1300px) {
 
             .card {
                 margin-top: 0px;
@@ -203,7 +203,8 @@ function setAssideStyle(){
 }
 
 
-function setAsside($page = "index"){
+function setAsside($page = "index", $id = 1){
+    //echo $id;
     echo "<div id=\"rightbottom\">";
     if ($page == "index") {
         echo "<div class=\"card\" id=\"pub\">
@@ -219,13 +220,17 @@ function setAsside($page = "index"){
 
         echo "<div id=\"boutons\">";
             if ($page == "profil"){
-                echo "<a href=\"newEvent.php\"><button type=\"button\" class=\"btn btn-danger btn-lg btn-block\">Logout</button></a>";
+                echo "<a href=\"index.php?disconnect=TRUE\"><button type=\"button\" class=\"btn btn-danger btn-lg btn-block\">Logout</button></a>";
+            }
+            else if ($page == "event"){
+                echo "<a href=\"event.php?join=TRUE&id=".intval($id)."\"><button type=\"button\" class=\"btn btn-success btn-lg btn-block\">Rejoindre</button></a>";
             }
             echo "<a href=\"newEvent.php\"><button type=\"button\" class=\"btn btn-primary btn-lg btn-block\">Nouvel évènement</button></a>";
 
+
         echo "</div>";
 
-    if ($page == "profil") {
+    if ($page == "profil" or $page == "event") {
         echo "<div class=\"card\" id=\"pub\">
             <div class=\"card-body\">
                 <h3 class=\"card-text\" style=\"text-align: center; font-weight: bold;\">Pear pub</h3>
@@ -306,8 +311,9 @@ function setPubStyle(){
 function setFormStyle(){
     echo "
         #form {
+            float: left;
             margin: 10px;
-            width: 70vw;
+            width: 77vw;
         }
 
         .custom-checkbox {
@@ -517,10 +523,10 @@ function getEventById($id){
 
 function getEventContestantsId($id){
     $bdd = getBDD();
-    $request = $bdd -> prepare("SELECT user_pseudo, cont_score FROM `sprt_contestants` WHERE ev_id = \"".$id."\"");
+    $request = $bdd -> prepare("SELECT user_pseudo, cont_score FROM `sprt_contestants` WHERE ev_id = ".$id);
     $request -> execute();
     $result = $request -> fetchAll(PDO::FETCH_ASSOC);
-    var_dump($result);
+    //var_dump($result);
     return $result;
 }
 

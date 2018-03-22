@@ -10,6 +10,7 @@ $game=null;
 $nbmax=null;
 if (isset($_GET["id"])){
     $event = getEventById($_GET["id"]);
+    //echo $_GET["id"];
     $contestants = getEventContestantsId($_GET["id"]);
     $name = $event[0]["ev_name"];
     $creator = $event[0]["ev_creator"];
@@ -39,11 +40,14 @@ if (isset($_GET["id"])){
     <style>
         <?php
             setMenuStyle();
-            setPubStyle();
+            setAssideStyle();
             setFormStyle();
         ?>
 
-
+        /*#rightbottom {*/
+            /*position: relative;*/
+            /*top : -470px;*/
+        /*}*/
 
         .card-columns {
             @include media-breakpoint-only(lg) {
@@ -53,6 +57,13 @@ if (isset($_GET["id"])){
                 column-count: 5;
             }
         }
+
+        /*@media all and (max-width: 1300px){*/
+            /*#rightbottom {*/
+                /*position: relative;*/
+                /*top: 0px;*/
+            /*}*/
+        /*}*/
     </style>
 </head>
 <body>
@@ -86,7 +97,7 @@ if (isset($_GET["id"])){
                 <h5 class="card-title">Liste des Participants :</h5>
                 <p class="card-text">';
                 for ($i=0;$i<sizeof($contestants);$i++){
-                    echo $contestants[$i]["cont_id"];
+                    echo $contestants[$i]["user_pseudo"];
                 }
                 echo '</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -104,15 +115,15 @@ if (isset($_GET["id"])){
         </div>
         <div class="card text-center">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <h5 class="card-title">Résultats :</h5>
+                <p class="card-text">BLABLABLA</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
-        <div class="card">
-            ';//<img class="card-img" src="..." alt="Card image">
-    echo '</div>
-        <div class="card p-3 text-right">
+        ';//<div class="card">
+            ;//<img class="card-img" src="..." alt="Card image">
+     //</div>
+     echo '<div class="card p-3 text-right">
             <blockquote class="blockquote mb-0">
                 <p>Nombre maximum de participants : </p>
                 <footer class="blockquote-footer">
@@ -128,9 +139,12 @@ if (isset($_GET["id"])){
             </div>
         </div>
     </div>';
+     //var_dump($_GET["id"]);
+        setAsside("event", $_GET["id"]);
     }
     else{
         echo "<p id='form'>Vous devez vous <a href='connexion.php'><button class='btn btn-warning mr-sm-2' type ='button'><img src = 'images/profile.png' style = 'width: 2vw'> Connecter </button></a> pour accéder à un évennement</p>";
+        setAsside();
     }
     
     
@@ -139,16 +153,9 @@ else{
     echo "<div>
              <h2>Ce Tournoi n'existe pas <a href='newEvent.php'>créez le !</a></h2>
         </div>";
-
+        setAsside();
  }
 
-?>
-
-
-
-
-<?php
-setPub();
 ?>
 </body>
 </html>
