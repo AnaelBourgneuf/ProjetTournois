@@ -10,6 +10,7 @@ $game=null;
 $nbmax=null;
 if (isset($_GET["id"])){
     $event = getEventById($_GET["id"]);
+    //echo $_GET["id"];
     $contestants = getEventContestantsId($_GET["id"]);
     $name = $event[0]["ev_name"];
     $creator = $event[0]["ev_creator"];
@@ -39,11 +40,14 @@ if (isset($_GET["id"])){
     <style>
         <?php
             setMenuStyle();
-            setPubStyle();
+            setAssideStyle();
             setFormStyle();
         ?>
 
-
+        /*#rightbottom {*/
+            /*position: relative;*/
+            /*top : -470px;*/
+        /*}*/
 
         .card-columns {
             @include media-breakpoint-only(lg) {
@@ -53,6 +57,13 @@ if (isset($_GET["id"])){
                 column-count: 5;
             }
         }
+
+        /*@media all and (max-width: 1300px){*/
+            /*#rightbottom {*/
+                /*position: relative;*/
+                /*top: 0px;*/
+            /*}*/
+        /*}*/
     </style>
 </head>
 <body>
@@ -128,9 +139,12 @@ if (isset($_GET["id"])){
             </div>
         </div>
     </div>';
+     //var_dump($_GET["id"]);
+        setAsside("event", $_GET["id"]);
     }
     else{
         echo "<p id='form'>Vous devez vous <a href='connexion.php'><button class='btn btn-warning mr-sm-2' type ='button'><img src = 'images/profile.png' style = 'width: 2vw'> Connecter </button></a> pour accéder à un évennement</p>";
+        setAsside();
     }
     
     
@@ -139,16 +153,9 @@ else{
     echo "<div>
              <h2>Ce Tournoi n'existe pas <a href='newEvent.php'>créez le !</a></h2>
         </div>";
-
+        setAsside();
  }
 
-?>
-
-
-
-
-<?php
-setPub();
 ?>
 </body>
 </html>
