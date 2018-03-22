@@ -226,7 +226,7 @@ function setAsside($page = "index", $id = 1){
                 echo "<a href=\"event.php?join=TRUE&id=".intval($id)."\"><button type=\"button\" class=\"btn btn-success btn-lg btn-block\">Rejoindre</button></a>";
             }
             else if ($page == "quit"){
-                echo "<a href=\"event.php?join=TRUE&id=".intval($id)."\"><button type=\"button\" class=\"btn btn-success btn-lg btn-block\">Rejoindre</button></a>";
+                echo "<a href=\"event.php?quit=TRUE&id=".intval($id)."\"><button type=\"button\" class=\"btn btn-danger btn-lg btn-block\">Quitter</button></a>";
             }
             echo "<a href=\"newEvent.php\"><button type=\"button\" class=\"btn btn-primary btn-lg btn-block\">Nouvel évènement</button></a>";
 
