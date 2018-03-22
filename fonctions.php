@@ -219,7 +219,7 @@ function setAsside($page = "index"){
 
         echo "<div id=\"boutons\">";
             if ($page == "profil"){
-                echo "<a href=\"newEvent.php\"><button type=\"button\" class=\"btn btn-danger btn-lg btn-block\">Logout</button></a>";
+                echo "<a href=\"index.php?disconnect=TRUE\"><button type=\"button\" class=\"btn btn-danger btn-lg btn-block\">Logout</button></a>";
             }
             echo "<a href=\"newEvent.php\"><button type=\"button\" class=\"btn btn-primary btn-lg btn-block\">Nouvel évènement</button></a>";
 
@@ -520,7 +520,7 @@ function getEventContestantsId($id){
     $request = $bdd -> prepare("SELECT user_pseudo, cont_score FROM `sprt_contestants` WHERE ev_id = \"".$id."\"");
     $request -> execute();
     $result = $request -> fetchAll(PDO::FETCH_ASSOC);
-    var_dump($result);
+    //var_dump($result);
     return $result;
 }
 
