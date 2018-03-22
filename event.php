@@ -140,7 +140,18 @@ if (isset($_GET["id"])){
         </div>
     </div>';
      //var_dump($_GET["id"]);
-        setAsside("event", $_GET["id"]);
+        $inscrit = false;
+        for ($i = 0; $i < sizeof($contestants); $i++){
+            if ($_SESSION["id"] == $contestants[$i]["user_pseudo"]){
+                $inscrit = true;
+            }
+        }
+        if ($inscrit){
+            setAsside("quit", $_GET["id"]);
+        }
+        else {
+            setAsside("join", $_GET["id"]);
+        }
     }
     else{
         echo "<p id='form'>Vous devez vous <a href='connexion.php'><button class='btn btn-warning mr-sm-2' type ='button'><img src = 'images/profile.png' style = 'width: 2vw'> Connecter </button></a> pour accéder à un évennement</p>";
