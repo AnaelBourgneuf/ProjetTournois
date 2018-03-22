@@ -678,16 +678,17 @@ function getProfileImageNameById($id) {
     }
 }
 
-function deleteContestant($pseudo, $eventId){
+function deleteContestant($pseudo, $eventId)
+{
     $bdd = getBDD();
-    $request = $bdd -> prepare("DELETE FROM `sprt_contestants` WHERE :pseudo = user_pseudo AND :ev_id = ev_id");
-    $request -> bindParam(":pseudo", $pseudo);
-    $request -> bindParam(":ev_id", $eventId);
-    $request -> execute();
-    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    $request = $bdd->prepare("DELETE FROM `sprt_contestants` WHERE :pseudo = user_pseudo AND :ev_id = ev_id");
+    $request->bindParam(":pseudo", $pseudo);
+    $request->bindParam(":ev_id", $eventId);
+    $request->execute();
+    $result = $request->fetchAll(PDO::FETCH_ASSOC);
     if (sizeof($result) > 0) {
         return true;
     }
     return false;
-
+}
 ?>
