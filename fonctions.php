@@ -678,7 +678,7 @@ function getProfileImageNameById($id) {
     }
 }
 
-function addContestant($pseudo, $eventId){
+function deleteContestant($pseudo, $eventId){
     $bdd = getBDD();
     $request = $bdd -> prepare("DELETE FROM `sprt_contestants` WHERE :pseudo = user_pseudo AND :ev_id = ev_id");
     $request -> bindParam(":pseudo", $pseudo);
