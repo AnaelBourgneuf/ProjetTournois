@@ -222,7 +222,10 @@ function setAsside($page = "index", $id = 1){
             if ($page == "profil"){
                 echo "<a href=\"index.php?disconnect=TRUE\"><button type=\"button\" class=\"btn btn-danger btn-lg btn-block\">Logout</button></a>";
             }
-            else if ($page == "event"){
+            else if ($page == "join"){
+                echo "<a href=\"event.php?join=TRUE&id=".intval($id)."\"><button type=\"button\" class=\"btn btn-success btn-lg btn-block\">Rejoindre</button></a>";
+            }
+            else if ($page == "quit"){
                 echo "<a href=\"event.php?join=TRUE&id=".intval($id)."\"><button type=\"button\" class=\"btn btn-success btn-lg btn-block\">Rejoindre</button></a>";
             }
             echo "<a href=\"newEvent.php\"><button type=\"button\" class=\"btn btn-primary btn-lg btn-block\">Nouvel évènement</button></a>";
@@ -230,7 +233,7 @@ function setAsside($page = "index", $id = 1){
 
         echo "</div>";
 
-    if ($page == "profil" or $page == "event") {
+    if ($page == "profil" or $page == "join" or $page == "quit") {
         echo "<div class=\"card\" id=\"pub\">
             <div class=\"card-body\">
                 <h3 class=\"card-text\" style=\"text-align: center; font-weight: bold;\">Pear pub</h3>
