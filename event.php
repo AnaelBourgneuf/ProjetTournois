@@ -23,7 +23,7 @@ if (isset($_GET["id"])){
     $event = getEventById($_GET["id"]);
     //echo $_GET["id"];
     $contestants = getEventContestantsId($_GET["id"]);
-    var_dump($contestants);
+    //var_dump($contestants);
     $name = $event[0]["ev_name"];
     $creator = $event[0]["ev_creator"];
     $time = $event[0]["ev_stamp"];
