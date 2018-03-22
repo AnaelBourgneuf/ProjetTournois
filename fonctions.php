@@ -222,18 +222,15 @@ function setAsside($page = "index", $id = 1){
             if ($page == "profil"){
                 echo "<a href=\"index.php?disconnect=TRUE\"><button type=\"button\" class=\"btn btn-danger btn-lg btn-block\">Logout</button></a>";
             }
-            else if ($page == "join"){
+            else if ($page == "event"){
                 echo "<a href=\"event.php?join=TRUE&id=".intval($id)."\"><button type=\"button\" class=\"btn btn-success btn-lg btn-block\">Rejoindre</button></a>";
-            }
-            else if ($page == "quit"){
-                echo "<a href=\"event.php?quit=TRUE&id=".intval($id)."\"><button type=\"button\" class=\"btn btn-danger btn-lg btn-block\">Quitter</button></a>";
             }
             echo "<a href=\"newEvent.php\"><button type=\"button\" class=\"btn btn-primary btn-lg btn-block\">Nouvel évènement</button></a>";
 
 
         echo "</div>";
 
-    if ($page == "profil" or $page == "join" or $page == "quit") {
+    if ($page == "profil" or $page == "event") {
         echo "<div class=\"card\" id=\"pub\">
             <div class=\"card-body\">
                 <h3 class=\"card-text\" style=\"text-align: center; font-weight: bold;\">Pear pub</h3>
@@ -680,5 +677,17 @@ function getProfileImageNameById($id) {
         return $result[0]["user_avatar"];
     }
 }
+
+function addContestant($pseudo, $eventId){
+    $bdd = getBDD();
+    $request = $bdd -> prepare("DELETE FROM `sprt_contestants` WHERE :pseudo = user_pseudo AND :ev_id = ev_id");
+    $request -> bindParam(":pseudo", $pseudo);
+    $request -> bindParam(":ev_id", $eventId);
+    $request -> execute();
+    $result = $request -> fetchAll(PDO::FETCH_ASSOC);
+    if (sizeof($result) > 0) {
+        return true;
+    }
+    return false;
 
 ?>
