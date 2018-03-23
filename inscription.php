@@ -115,8 +115,8 @@ setMenu("Inscription");
                 alert("les emails ne sont pas les mêmes.");
                 return false;
             }
-            if (mdpv.length < 6){
-                alert("votre mot de passe doit faire au moins 6 caractères.");
+            if (mdpv.length < 8){
+                alert("votre mot de passe doit faire au moins 8 caractères.");
                 return false;
             }
             if (mdpv.indexOf("1") == -1 && mdpv.indexOf("2") == -1 && mdpv.indexOf("3") == -1 && mdpv.indexOf("4") == -1 && mdpv.indexOf("5") == -1 && mdpv.indexOf("6") == -1 && mdpv.indexOf("7") == -1 && mdpv.indexOf("8") == -1 && mdpv.indexOf("9") == -1 && mdpv.indexOf("0") == -1){
