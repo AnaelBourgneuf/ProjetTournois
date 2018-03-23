@@ -636,15 +636,28 @@ function getEventId(){
     return $result;
 }
 
-function addContestant($pseudo, $eventId){
+function isContestant($pseudo, $ev_id){
     $bdd = getBDD();
-    $request = $bdd -> prepare("INSERT INTO `sprt_contestants` (`user_pseudo`, `ev_id`) VALUES (:pseudo, :ev_id)");
+    $request = $bdd -> prepare("SELECT * FROM sprt_contestants WHERE user_pseudo = :pseudo AND ev_id = :ev_id");
     $request -> bindParam(":pseudo", $pseudo);
-    $request -> bindParam(":ev_id", $eventId);
+    $request -> bindParam(":ev_id", $ev_id);
     $request -> execute();
     $result = $request -> fetchAll(PDO::FETCH_ASSOC);
-    if (sizeof($result) > 0) {
-        return true;
+    return (sizeof($result) > 0);
+}
+
+function addContestant($pseudo, $eventId){
+    $bdd = getBDD();
+    var_dump(isContestant($pseudo, $eventId));
+    if (!isContestant($pseudo, $eventId)) {
+        $request = $bdd->prepare("INSERT INTO `sprt_contestants` (`user_pseudo`, `ev_id`) VALUES (:pseudo, :ev_id)");
+        $request->bindParam(":pseudo", $pseudo);
+        $request->bindParam(":ev_id", $eventId);
+        $request->execute();
+        $result = $request->fetchAll(PDO::FETCH_ASSOC);
+        if (sizeof($result) > 0) {
+            return true;
+        }
     }
     return false;
 }
