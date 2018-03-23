@@ -13,7 +13,8 @@ if (isset($_GET["quit"])){
 }
 
 if (isset($_POST)){
-    var_dump($_POST);
+    //var_dump($_POST);
+    updateScore($_GET["id"], $_POST["pseudo"], $_POST["score"]);
 }
 
 $event = null;
@@ -134,11 +135,11 @@ if (isset($_GET["id"])){
                                     echo "<form class='card-text row' action='event.php?id=".$_GET["id"]."' method='post'> 
                                             <div class='form mb-1 col' style='width: 10em;'>
                                                 <label for=\"pseudo\" class=\"sr-only\">".$contestants[$i]["user_pseudo"]."</label>
-                                                <input type=\"text\" readonly class=\"form-control-plaintext\" id=\"".$contestants[$i]["user_pseudo"]."\" name=\"".$contestants[$i]["user_pseudo"]."\" value=\"".$contestants[$i]["user_pseudo"]."\">
+                                                <input type=\"text\" readonly class=\"form-control-plaintext\" id=\"".$contestants[$i]["user_pseudo"]."\" name=\"pseudo\" value=\"".$contestants[$i]["user_pseudo"]."\">
                                             </div>
                                             <div class=\"form mx-sm-3 mb-1 col\">
                                                 <label for=\"score\" class=\"sr-only\">".$contestants[$i]["cont_score"]."</label>
-                                                <input type=\"number\" class=\"form-control\" id=\"score".$contestants[$i]["user_pseudo"]."\" name=\"score".$contestants[$i]["user_pseudo"]."\" placeholder=\"".$contestants[$i]["cont_score"]."\">
+                                                <input type=\"number\" class=\"form-control\" id=\"score".$contestants[$i]["user_pseudo"]."\" name=\"score\" placeholder=\"".$contestants[$i]["cont_score"]."\">
                                             </div>
                                             <button type=\"submit\" class=\"btn btn-primary mb-2 col\">Envoyer</button>
                                           </form>";

@@ -708,4 +708,11 @@ function deleteContestant($pseudo, $eventId)
     }
     return false;
 }
+
+function updateScore($ev_id, $user_pseudo, $score){
+    //echo $ev_id." ".$user_pseudo." ".$score;
+    $bdd = getBDD();
+    $request = $bdd -> prepare("UPDATE `sprt_contestants` SET cont_score = ".$score." WHERE ev_id =".$ev_id." AND user_pseudo = \"".$user_pseudo."\"");
+    $request -> execute();
+}
 ?>
