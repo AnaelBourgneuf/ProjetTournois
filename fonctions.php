@@ -648,7 +648,7 @@ function isContestant($pseudo, $ev_id){
 
 function addContestant($pseudo, $eventId){
     $bdd = getBDD();
-    var_dump(isContestant($pseudo, $eventId));
+    //var_dump(isContestant($pseudo, $eventId));
     if (!isContestant($pseudo, $eventId)) {
         $request = $bdd->prepare("INSERT INTO `sprt_contestants` (`user_pseudo`, `ev_id`) VALUES (:pseudo, :ev_id)");
         $request->bindParam(":pseudo", $pseudo);
