@@ -536,7 +536,7 @@ function getEventContestantsId($id){
 
 function getBDD(){
     try{
-        return new PDO('mysql:host=localhost;dbname=spearitournament;charset=utf8', "root", "root");
+        return new PDO('mysql:host=localhost;dbname=spearitournament;charset=utf8', "spearitournament", "spearit");
     }
     catch(Exception $err){
         die("Debug: problème de bdd\n" . $err);
